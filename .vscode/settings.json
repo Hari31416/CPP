@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "*.ipynb": "jupyter",
+        "*.rmd": "markdown",
+        "*.html": "html",
+        "ostream": "cpp",
+        "iostream": "cpp"
+    }
+}
