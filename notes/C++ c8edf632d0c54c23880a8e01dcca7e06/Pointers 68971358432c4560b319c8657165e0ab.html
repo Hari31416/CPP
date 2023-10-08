@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pointers</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="pointers">Pointers</h1>
+<ul>
+<li><a href="#pointers">Pointers</a></li>
+<li><a href="#pointers-1">Pointers</a>
+<ul>
+<li><a href="#declaring-pointers">Declaring Pointers</a></li>
+<li><a href="#initializing-pointers">Initializing Pointers</a></li>
+<li><a href="#dereferencing-pointers">Dereferencing Pointers</a></li>
+<li><a href="#null-pointers">Null Pointers</a></li>
+<li><a href="#array-of-pointers">*<strong>*Array of Pointers**</strong></a></li>
+<li><a href="#pointer-to-pointer">*<strong>*Pointer to Pointer**</strong></a></li>
+</ul>
+</li>
+<li><a href="#pointer-arithmetic">Pointer Arithmetic</a>
+<ul>
+<li><a href="#incrementing-a-pointer">*<strong>*Incrementing a Pointer**</strong></a></li>
+<li><a href="#decrementing-a-pointer"><strong>Decrementing a Pointer</strong></a></li>
+<li><a href="#pointer-comparisons"><strong>Pointer Comparisons</strong></a></li>
+</ul>
+</li>
+<li><a href="#pointers-and-function">Pointers and Function</a>
+<ul>
+<li><a href="#passing-pointers-to-functions">*<strong>*Passing Pointers to Functions**</strong></a></li>
+<li><a href="#return-pointer-from-functions">*<strong>*Return Pointer from Functions**</strong></a></li>
+</ul>
+</li>
+</ul>
+<h1 id="pointers-1">Pointers</h1>
+<p>A pointer in C++ is a variable that stores the memory address of another variable. It allows us to work with memory locations directly, which can be useful for various programming tasks. In this document, we will discuss pointers in detail.</p>
+<h2 id="declaring-pointers">Declaring Pointers</h2>
+<p>To declare a pointer, we use the <code>*</code> operator. The syntax is:</p>
+<pre><code class="language-cpp">type *var-name;
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> *ptr;
+</code></pre>
+<p>This declares a pointer named <code>ptr</code> that can point to an integer variable.</p>
+<blockquote>
+<p>The actual data type of the value of all pointers, whether integer, float, character, or otherwise, is the same, a long hexadecimal number that represents a memory address. The only difference between pointers of different data types is the data type of the variable or constant that the pointer points to.</p>
+</blockquote>
+<h2 id="initializing-pointers">Initializing Pointers</h2>
+<p>A pointer can be initialized with the address of a variable using the <code>&amp;</code> operator. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> num = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> *ptr = &amp;num;
+</code></pre>
+<p>This initializes the pointer <code>ptr</code> with the address of the <code>num</code> variable.</p>
+<h2 id="dereferencing-pointers">Dereferencing Pointers</h2>
+<p>Dereferencing a pointer means accessing the value stored in the memory location pointed to by the pointer. We use the <code>*</code> operator to do this. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> num = <span class="hljs-number">5</span>;
+<span class="hljs-type">int</span> *ptr = &amp;num;
+
+cout &lt;&lt; *ptr &lt;&lt; endl; <span class="hljs-comment">// Output: 5</span>
+</code></pre>
+<p>Here, <code>*ptr</code> gives us the value stored in the memory location pointed to by <code>ptr</code>, which is <code>5</code>.</p>
+<p>There are few important operations, which we will do with the pointers very frequently. <strong>(a)</strong> We define a pointer variable. <strong>(b)</strong> Assign the address of a variable to a pointer. <strong>(c)</strong> Finally access the value at the address available in the pointer variable. This is done by using unary operator <code>*</code> that returns the value of the variable located at the address specified by its operand.</p>
+<p>Here is a complete example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var = <span class="hljs-number">20</span>;   <span class="hljs-comment">// actual variable declaration.</span>
+   <span class="hljs-type">int</span>  *ip;        <span class="hljs-comment">// pointer variable</span>
+
+   ip = &amp;var;       <span class="hljs-comment">// store address of var in pointer variable</span>
+
+   cout &lt;&lt; <span class="hljs-string">&quot;Value of var variable: &quot;</span>;
+   cout &lt;&lt; var &lt;&lt; endl;
+
+   <span class="hljs-comment">// print the address stored in ip pointer variable</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Address stored in ip variable: &quot;</span>;
+   cout &lt;&lt; ip &lt;&lt; endl;
+
+   <span class="hljs-comment">// access the value at the address available in pointer</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Value of *ip variable: &quot;</span>;
+   cout &lt;&lt; *ip &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="null-pointers">Null Pointers</h2>
+<p>It is always a good practice to assign the pointer NULL to a pointer variable in case you do not have exact address to be assigned. This is done at the time of variable declaration. A pointer that is assigned NULL is called a <strong>null</strong> pointer.</p>
+<p>The NULL pointer is a constant with a value of zero defined in several standard libraries, including iostream. Consider the following program:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  *ptr = <span class="hljs-literal">NULL</span>;
+   cout &lt;&lt; <span class="hljs-string">&quot;The value of ptr is &quot;</span> &lt;&lt; ptr ;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>The value of ptr is 0
+</code></pre>
+<h2 id="array-of-pointers">*<strong>*Array of Pointers**</strong></h2>
+<p>There may be a situation, when we want to maintain an array, which can store pointers to an int or char or any other data type available. Following is the declaration of an array of pointers to an integer −</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> *ptr[MAX];
+</code></pre>
+<p>This declares <strong>ptr</strong> as an array of MAX integer pointers. Thus, each element in ptr, now holds a pointer to an int value. Following example makes use of three integers which will be stored in an array of pointers as follows</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var[MAX] = {<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>};
+   <span class="hljs-type">int</span> *ptr[MAX];
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAX; i++) {
+      ptr[i] = &amp;var[i]; <span class="hljs-comment">// assign the address of integer.</span>
+   }
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAX; i++) {
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; *ptr[i] &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<blockquote>
+<p>In many cases, a pointer and an array can be used interchangebly.</p>
+</blockquote>
+<h2 id="pointer-to-pointer">*<strong>*Pointer to Pointer**</strong></h2>
+<p>A pointer to a pointer is a form of multiple indirection or a chain of pointers. Normally, a pointer contains the address of a variable. When we define a pointer to a pointer, the first pointer contains the address of the second pointer, which points to the location that contains the actual value. We must declare this as</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> **var
+</code></pre>
+<p>When a target value is indirectly pointed to by a pointer to a pointer, accessing that value requires that the asterisk operator be applied twice, as is shown below in the example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var;
+   <span class="hljs-type">int</span>  *ptr;
+   <span class="hljs-type">int</span>  **pptr;
+
+   var = <span class="hljs-number">3000</span>;
+
+   <span class="hljs-comment">// take the address of var</span>
+   ptr = &amp;var;
+
+   <span class="hljs-comment">// take the address of ptr using address of operator &amp;</span>
+   pptr = &amp;ptr;
+
+		<span class="hljs-comment">// take the value using pptr</span>
+    cout &lt;&lt; <span class="hljs-string">&quot;Value of var :&quot;</span> &lt;&lt; var &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Value available of ptr :&quot;</span> &lt;&lt; ptr &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Value available at *ptr :&quot;</span> &lt;&lt; *ptr &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Value available at pptr :&quot;</span> &lt;&lt; pptr &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Value available at *pptr :&quot;</span> &lt;&lt; *pptr &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Value available at **pptr :&quot;</span> &lt;&lt; **pptr &lt;&lt; endl;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>Value of var :3000
+Value available of ptr :0x7ffc8ddeb004
+Value available at *ptr :3000
+Value available at pptr :0x7ffc8ddeb008
+Value available at *pptr :0x7ffc8ddeb004
+Value available at **pptr :3000
+</code></pre>
+<h1 id="pointer-arithmetic">Pointer Arithmetic</h1>
+<p>A pointer is an address which is a numeric value; therefore, you can perform arithmetic operations on a pointer just as you can a numeric value. There are four arithmetic operators that can be used on pointers: ++, --, +, and -.</p>
+<p>Pointer arithmetic is the manipulation of pointers using arithmetic operations. We can add or subtract an integer value from a pointer to move it to a different memory location. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> arr[] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+<span class="hljs-type">int</span> *ptr = arr;
+
+cout &lt;&lt; *ptr &lt;&lt; endl; <span class="hljs-comment">// Output: 1</span>
+
+ptr++; <span class="hljs-comment">// Move the pointer to the next memory location</span>
+
+cout &lt;&lt; *ptr &lt;&lt; endl; <span class="hljs-comment">// Output: 2</span>
+
+</code></pre>
+<p>Here, <code>ptr</code> is initially pointing to the first element of the <code>arr</code> array. We use the <code>*</code> operator to print the value stored in that location, which is <code>1</code>. We then increment <code>ptr</code> by one, which moves it to the next memory location in the array. We use the <code>*</code> operator again to print the value stored in that location, which is <code>2</code>.</p>
+<h2 id="incrementing-a-pointer">*<strong>*Incrementing a Pointer**</strong></h2>
+<p>The following program increments the variable pointer to access each succeeding element of the array:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var[MAX] = {<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>};
+   <span class="hljs-type">int</span>  *ptr;
+
+   <span class="hljs-comment">// let us have array address in pointer.</span>
+   ptr = var;
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; MAX; i++) {
+      cout &lt;&lt; <span class="hljs-string">&quot;Address of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; ptr &lt;&lt; endl;
+
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; *ptr &lt;&lt; endl;
+
+      <span class="hljs-comment">// point to the next location</span>
+      ptr++;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="decrementing-a-pointer"><strong>Decrementing a Pointer</strong></h2>
+<p>The same considerations apply to decrementing a pointer, which decreases its value by the number of bytes of its data type as shown below −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var[MAX] = {<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>};
+   <span class="hljs-type">int</span>  *ptr;
+
+   <span class="hljs-comment">// let us have address of the last element in pointer.</span>
+   ptr = &amp;var[MAX<span class="hljs-number">-1</span>];
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = MAX; i &gt; <span class="hljs-number">0</span>; i--) {
+      cout &lt;&lt; <span class="hljs-string">&quot;Address of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; ptr &lt;&lt; endl;
+
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; *ptr &lt;&lt; endl;
+
+      <span class="hljs-comment">// point to the previous location</span>
+      ptr--;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="pointer-comparisons"><strong>Pointer Comparisons</strong></h2>
+<p>Pointers may be compared by using relational operators, such as ==, &lt;, and &gt;. If p1 and p2 point to variables that are related to each other, such as elements of the same array, then p1 and p2 can be meaningfully compared.</p>
+<p>The following program modifies the previous example one by incrementing the variable pointer so long as the address to which it points is either less than or equal to the address of the last element of the array, which is <code>&amp;var[MAX - 1]</code>:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span>  var[MAX] = {<span class="hljs-number">10</span>, <span class="hljs-number">100</span>, <span class="hljs-number">200</span>};
+   <span class="hljs-type">int</span>  *ptr;
+
+   <span class="hljs-comment">// let us have address of the first element in pointer.</span>
+   ptr = var;
+   <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;
+
+   <span class="hljs-keyword">while</span> ( ptr &lt;= &amp;var[MAX - <span class="hljs-number">1</span>] ) {
+      cout &lt;&lt; <span class="hljs-string">&quot;Address of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; ptr &lt;&lt; endl;
+
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of var[&quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;] = &quot;</span>;
+      cout &lt;&lt; *ptr &lt;&lt; endl;
+
+      <span class="hljs-comment">// point to the previous location</span>
+      ptr++;
+      i++;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h1 id="pointers-and-function">Pointers and Function</h1>
+<h2 id="passing-pointers-to-functions">*<strong>*Passing Pointers to Functions**</strong></h2>
+<p>C++ allows you to pass a pointer to a function. To do so, simply declare the function parameter as a pointer type.</p>
+<p>Following a simple example where we pass an unsigned long pointer to a function and change the value inside the function which reflects back in the calling function:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ctime&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getSeconds</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> *par)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> sec;
+   <span class="hljs-built_in">getSeconds</span>( &amp;sec );
+
+   <span class="hljs-comment">// print the actual value</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Number of seconds :&quot;</span> &lt;&lt; sec &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getSeconds</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">long</span> *par)</span> </span>{
+   <span class="hljs-comment">// get the current number of seconds</span>
+   *par = <span class="hljs-built_in">time</span>( <span class="hljs-literal">NULL</span> );
+
+   <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>The function which can accept a pointer, can also accept an array (As passing an array to function passes the pointer to the first element). Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// function declaration:</span>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getAverage</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> size)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// an int array with 5 elements.</span>
+   <span class="hljs-type">int</span> balance[<span class="hljs-number">5</span>] = {<span class="hljs-number">1000</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">17</span>, <span class="hljs-number">50</span>};
+   <span class="hljs-type">double</span> avg;
+
+   <span class="hljs-comment">// pass pointer to the array as an argument.</span>
+   avg = <span class="hljs-built_in">getAverage</span>( balance, <span class="hljs-number">5</span> ) ;
+
+   <span class="hljs-comment">// output the returned value</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Average value is: &quot;</span> &lt;&lt; avg &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getAverage</span><span class="hljs-params">(<span class="hljs-type">int</span> *arr, <span class="hljs-type">int</span> size)</span> </span>{
+   <span class="hljs-type">int</span> i, sum = <span class="hljs-number">0</span>;
+   <span class="hljs-type">double</span> avg;
+
+   <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; size; ++i) {
+      sum += arr[i];
+   }
+   avg = <span class="hljs-built_in">double</span>(sum) / size;
+
+   <span class="hljs-keyword">return</span> avg;
+}
+</code></pre>
+<h2 id="return-pointer-from-functions">*<strong>*Return Pointer from Functions**</strong></h2>
+<p>We can return a pointer from a function. To do so</p>
+<p>, you would have to declare a function returning a pointer as in the following example −</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> * <span class="hljs-title">myFunction</span><span class="hljs-params">()</span> </span>{
+   .
+   .
+   .
+}
+</code></pre>
+<p>Now, consider the following function, which will generate 10 random numbers and return them using an array name which represents a pointer i.e., address of first array element.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;ctime&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// function to generate and retrun random numbers.</span>
+<span class="hljs-function"><span class="hljs-type">int</span> * <span class="hljs-title">getRandom</span><span class="hljs-params">( )</span> </span>{
+   <span class="hljs-type">static</span> <span class="hljs-type">int</span>  r[<span class="hljs-number">10</span>];
+
+   <span class="hljs-comment">// set the seed</span>
+   <span class="hljs-built_in">srand</span>( (<span class="hljs-type">unsigned</span>)<span class="hljs-built_in">time</span>( <span class="hljs-literal">NULL</span> ) );
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i) {
+      r[i] = <span class="hljs-built_in">rand</span>();
+      cout &lt;&lt; r[i] &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> r;
+}
+
+<span class="hljs-comment">// main function to call above defined function.</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// a pointer to an int.</span>
+   <span class="hljs-type">int</span> *p;
+
+   p = <span class="hljs-built_in">getRandom</span>();
+   <span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ ) {
+      cout &lt;&lt; <span class="hljs-string">&quot;*(p + &quot;</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;) : &quot;</span>;
+      cout &lt;&lt; *(p + i) &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled together and executed, it produces result something as follows −</p>
+<pre><code>624723190
+1468735695
+807113585
+976495677
+613357504
+1377296355
+1530315259
+1778906708
+1820354158
+667126415
+*(p + 0) : 624723190
+*(p + 1) : 1468735695
+*(p + 2) : 807113585
+*(p + 3) : 976495677
+*(p + 4) : 613357504
+*(p + 5) : 1377296355
+*(p + 6) : 1530315259
+*(p + 7) : 1778906708
+*(p + 8) : 1820354158
+*(p + 9) : 667126415
+</code></pre>
+
+        
+        
+    </body>
+    </html>

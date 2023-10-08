@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Data Structures</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="data-structures">Data Structures</h1>
+<ul>
+<li><a href="#data-structures">Data Structures</a>
+<ul>
+<li><a href="#defining-a-structure"><strong>Defining a Structure</strong></a></li>
+<li><a href="#accessing-structure-members"><strong>Accessing Structure Members</strong></a></li>
+<li><a href="#structures-as-function-arguments"><strong>Structures as Function Arguments</strong></a></li>
+<li><a href="#pointers-to-structures"><strong>Pointers to Structures</strong></a></li>
+</ul>
+</li>
+</ul>
+<p>Structures are used to represent a record, suppose you want to keep track of your books in a library. You might want to track the following attributes about each book −</p>
+<ul>
+<li>Title</li>
+<li>Author</li>
+<li>Subject</li>
+<li>Book ID</li>
+</ul>
+<h2 id="defining-a-structure"><strong>Defining a Structure</strong></h2>
+<p>To define a structure, you must use the struct statement. The struct statement defines a new data type, with more than one member, for your program. The format of the struct statement is this −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">struct</span> [structure tag] {
+   member definition;
+   member definition;
+   ...
+   member definition;
+} [one <span class="hljs-keyword">or</span> more structure variables];
+</code></pre>
+<p>Here is the way you would declare the Book structure −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> {
+   <span class="hljs-type">char</span>  title[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  author[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  subject[<span class="hljs-number">100</span>];
+   <span class="hljs-type">int</span>   book_id;
+} book;
+</code></pre>
+<h2 id="accessing-structure-members"><strong>Accessing Structure Members</strong></h2>
+<p>To access any member of a structure, we use the <strong>member access operator (.)</strong>. The member access operator is coded as a period between the structure variable name and the structure member that we wish to access. You would use <strong>struct</strong> keyword to define variables of structure type. Following is the example to explain usage of structure:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> {
+   <span class="hljs-type">char</span>  title[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  author[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  subject[<span class="hljs-number">100</span>];
+   <span class="hljs-type">int</span>   book_id;
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book1;        <span class="hljs-comment">// Declare Book1 of type Book</span>
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book2;        <span class="hljs-comment">// Declare Book2 of type Book</span>
+
+   <span class="hljs-comment">// book 1 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book1.title, <span class="hljs-string">&quot;Learn C++ Programming&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.author, <span class="hljs-string">&quot;Chand Miyan&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.subject, <span class="hljs-string">&quot;C++ Programming&quot;</span>);
+   Book1.book_id = <span class="hljs-number">6495407</span>;
+
+   <span class="hljs-comment">// book 2 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book2.title, <span class="hljs-string">&quot;Telecom Billing&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.author, <span class="hljs-string">&quot;Yakit Singha&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.subject, <span class="hljs-string">&quot;Telecom&quot;</span>);
+   Book2.book_id = <span class="hljs-number">6495700</span>;
+
+   <span class="hljs-comment">// Print Book1 info</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 1 title : &quot;</span> &lt;&lt; Book1.title &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 1 author : &quot;</span> &lt;&lt; Book1.author &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 1 subject : &quot;</span> &lt;&lt; Book1.subject &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 1 id : &quot;</span> &lt;&lt; Book1.book_id &lt;&lt;endl;
+
+   <span class="hljs-comment">// Print Book2 info</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 2 title : &quot;</span> &lt;&lt; Book2.title &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 2 author : &quot;</span> &lt;&lt; Book2.author &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 2 subject : &quot;</span> &lt;&lt; Book2.subject &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book 2 id : &quot;</span> &lt;&lt; Book2.book_id &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result:</p>
+<pre><code>Book 1 title : Learn C++ Programming
+Book 1 author : Chand Miyan
+Book 1 subject : C++ Programming
+Book 1 id : 6495407
+Book 2 title : Telecom Billing
+Book 2 author : Yakit Singha
+Book 2 subject : Telecom
+Book 2 id : 6495700
+</code></pre>
+<h2 id="structures-as-function-arguments"><strong>Structures as Function Arguments</strong></h2>
+<p>You can pass a structure as a function argument in very similar way as you pass any other variable or pointer. You would access structure variables in the similar way as you have accessed in the above example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( <span class="hljs-keyword">struct</span> Books book )</span></span>;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> {
+   <span class="hljs-type">char</span>  title[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  author[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  subject[<span class="hljs-number">100</span>];
+   <span class="hljs-type">int</span>   book_id;
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book1;        <span class="hljs-comment">// Declare Book1 of type Book</span>
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book2;        <span class="hljs-comment">// Declare Book2 of type Book</span>
+
+   <span class="hljs-comment">// book 1 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book1.title, <span class="hljs-string">&quot;Learn C++ Programming&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.author, <span class="hljs-string">&quot;Chand Miyan&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.subject, <span class="hljs-string">&quot;C++ Programming&quot;</span>);
+   Book1.book_id = <span class="hljs-number">6495407</span>;
+
+   <span class="hljs-comment">// book 2 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book2.title, <span class="hljs-string">&quot;Telecom Billing&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.author, <span class="hljs-string">&quot;Yakit Singha&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.subject, <span class="hljs-string">&quot;Telecom&quot;</span>);
+   Book2.book_id = <span class="hljs-number">6495700</span>;
+
+   <span class="hljs-comment">// Print Book1 info</span>
+   <span class="hljs-built_in">printBook</span>( Book1 );
+
+   <span class="hljs-comment">// Print Book2 info</span>
+   <span class="hljs-built_in">printBook</span>( Book2 );
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( <span class="hljs-keyword">struct</span> Books book )</span> </span>{
+   cout &lt;&lt; <span class="hljs-string">&quot;Book title : &quot;</span> &lt;&lt; book.title &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book author : &quot;</span> &lt;&lt; book.author &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book subject : &quot;</span> &lt;&lt; book.subject &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book id : &quot;</span> &lt;&lt; book.book_id &lt;&lt;endl;
+}
+</code></pre>
+<h2 id="pointers-to-structures"><strong>Pointers to Structures</strong></h2>
+<p>You can define pointers to structures in very similar way as you define pointer to any other variable as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> *struct_pointer;
+</code></pre>
+<p>Now, you can store the address of a structure variable in the above defined pointer variable. To find the address of a structure variable, place the &amp; operator before the structure's name as follows −</p>
+<pre><code class="language-cpp">struct_pointer = &amp;Book1;
+</code></pre>
+<p>To access the members of a structure using a pointer to that structure, you must use the -&gt; operator as follows −</p>
+<pre><code class="language-cpp">struct_pointer-&gt;title;
+</code></pre>
+<p>Let us re-write above example using structure pointer, hope this will be easy for you to understand the concept:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( <span class="hljs-keyword">struct</span> Books *book )</span></span>;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> {
+   <span class="hljs-type">char</span>  title[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  author[<span class="hljs-number">50</span>];
+   <span class="hljs-type">char</span>  subject[<span class="hljs-number">100</span>];
+   <span class="hljs-type">int</span>   book_id;
+};
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book1;        <span class="hljs-comment">// Declare Book1 of type Book</span>
+   <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Books</span> Book2;        <span class="hljs-comment">// Declare Book2 of type Book</span>
+
+   <span class="hljs-comment">// Book 1 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book1.title, <span class="hljs-string">&quot;Learn C++ Programming&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.author, <span class="hljs-string">&quot;Chand Miyan&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book1.subject, <span class="hljs-string">&quot;C++ Programming&quot;</span>);
+   Book1.book_id = <span class="hljs-number">6495407</span>;
+
+   <span class="hljs-comment">// Book 2 specification</span>
+   <span class="hljs-built_in">strcpy</span>( Book2.title, <span class="hljs-string">&quot;Telecom Billing&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.author, <span class="hljs-string">&quot;Yakit Singha&quot;</span>);
+   <span class="hljs-built_in">strcpy</span>( Book2.subject, <span class="hljs-string">&quot;Telecom&quot;</span>);
+   Book2.book_id = <span class="hljs-number">6495700</span>;
+
+   <span class="hljs-comment">// Print Book1 info, passing address of structure</span>
+   <span class="hljs-built_in">printBook</span>( &amp;Book1 );
+
+   <span class="hljs-comment">// Print Book1 info, passing address of structure</span>
+   <span class="hljs-built_in">printBook</span>( &amp;Book2 );
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// This function accept pointer to structure as parameter.</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printBook</span><span class="hljs-params">( <span class="hljs-keyword">struct</span> Books *book )</span> </span>{
+   cout &lt;&lt; <span class="hljs-string">&quot;Book title : &quot;</span> &lt;&lt; book-&gt;title &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book author : &quot;</span> &lt;&lt; book-&gt;author &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book subject : &quot;</span> &lt;&lt; book-&gt;subject &lt;&lt;endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Book id : &quot;</span> &lt;&lt; book-&gt;book_id &lt;&lt;endl;
+}
+</code></pre>
+
+        
+        
+    </body>
+    </html>

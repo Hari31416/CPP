@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Basic Syntax</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="basic-syntax">Basic Syntax</h1>
+<ul>
+<li><a href="#basic-syntax">Basic Syntax</a>
+<ul>
+<li><a href="#hello-world">Hello World</a></li>
+<li><a href="#compile-and-execute-c-program"><strong>Compile and Execute C++ Program</strong></a></li>
+<li><a href="#semicolons-and-blocks-in-c">*<strong>*Semicolons and Blocks in C++**</strong></a></li>
+<li><a href="#c-identifiers"><strong>C++ Identifiers</strong></a></li>
+<li><a href="#c-keywords"><strong>C++ Keywords</strong></a></li>
+<li><a href="#trigraphs"><strong>Trigraphs</strong></a></li>
+<li><a href="#whitespace-in-c"><strong>Whitespace in C++</strong></a></li>
+</ul>
+</li>
+<li><a href="#comments-in-c">*<strong>*Comments in C++**</strong></a></li>
+</ul>
+<h2 id="hello-world">Hello World</h2>
+<p>Let us look at a simple code that would print the words <em>Hello World.</em></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// main() is where program execution begins.</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   cout &lt;&lt; <span class="hljs-string">&quot;Hello World&quot;</span>; <span class="hljs-comment">// prints Hello World</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Let us look at the various parts of the above program −</p>
+<ul>
+<li>The C++ language defines several headers, which contain information that is either necessary or useful to your program. For this program, the header <strong><iostream></strong> is needed.</li>
+<li>The line <strong>using namespace std;</strong> tells the compiler to use the std namespace. Namespaces are a relatively recent addition to C++.</li>
+<li>The next line '<strong>// main() is where program execution begins.</strong>' is a single-line comment available in C++. Single-line comments begin with // and stop at the end of the line.</li>
+<li>The line <strong>int main()</strong> is the main function where program execution begins.</li>
+<li>The next line <strong>cout &lt;&lt; &quot;Hello World&quot;;</strong> causes the message &quot;Hello World&quot; to be displayed on the screen.</li>
+<li>The next line <strong>return 0;</strong> terminates main( )function and causes it to return the value 0 to the calling process.</li>
+</ul>
+<h2 id="compile-and-execute-c-program"><strong>Compile and Execute C++ Program</strong></h2>
+<p>Let's look at how to save the file, compile and run the program. Please follow the steps given below −</p>
+<ul>
+<li>Open a text editor and add the code as above.</li>
+<li>Save the file as: hello.cpp</li>
+<li>Open a command prompt and go to the directory where you saved the file.</li>
+<li>Type 'g++ hello.cpp' and press enter to compile your code. If there are no errors in your code the command prompt will take you to the next line and would generate a.out executable file.</li>
+<li>Now, type 'a.out' to run your program.</li>
+<li>You will be able to see ' Hello World ' printed on the window.</li>
+</ul>
+<pre><code class="language-bash">g++ hello.cpp
+./a.out
+=&gt; Hello World
+</code></pre>
+<h2 id="semicolons-and-blocks-in-c">*<strong>*Semicolons and Blocks in C++**</strong></h2>
+<p>In C++, the semicolon is a statement terminator. That is, each individual statement must end with a semicolon. It indicates the end of one logical entity.</p>
+<pre><code class="language-cpp">x = y;
+y = y + <span class="hljs-number">1</span>;
+<span class="hljs-built_in">add</span>(x, y);
+</code></pre>
+<p>C++ does not recognize the end of the line as a terminator. For this reason, it does not matter where you put a statement in a line.</p>
+<pre><code class="language-cpp">x = y; y = y + <span class="hljs-number">1</span>; <span class="hljs-built_in">add</span>(x, y);
+</code></pre>
+<p>A block is a set of logically connected statements that are surrounded by opening and closing braces</p>
+<pre><code class="language-cpp">{
+   cout &lt;&lt; <span class="hljs-string">&quot;Hello World&quot;</span>; <span class="hljs-comment">// prints Hello World</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="c-identifiers"><strong>C++ Identifiers</strong></h2>
+<p>A C++ identifier is a name used to identify a variable, function, class, module, or any other user-defined item. An identifier starts with a letter A to Z or a to z or an underscore (_) followed by zero or more letters, underscores, and digits (0 to 9).</p>
+<p>C++ does not allow punctuation characters such as @, $, and % within identifiers. C++ is a case-sensitive programming language. Thus, <strong>Manpower</strong> and <strong>manpower</strong> are two different identifiers in C++.</p>
+<h2 id="c-keywords"><strong>C++ Keywords</strong></h2>
+<p>The following list shows the reserved words in C++. These reserved words may not be used as constant or variable or any other identifier names.</p>
+<table>
+<thead>
+<tr>
+<th>asm</th>
+<th>else</th>
+<th>new</th>
+<th>this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>enum</td>
+<td>operator</td>
+<td>throw</td>
+</tr>
+<tr>
+<td>bool</td>
+<td>explicit</td>
+<td>private</td>
+<td>true</td>
+</tr>
+<tr>
+<td>break</td>
+<td>export</td>
+<td>protected</td>
+<td>try</td>
+</tr>
+<tr>
+<td>case</td>
+<td>extern</td>
+<td>public</td>
+<td>typedef</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>false</td>
+<td>register</td>
+<td>typeid</td>
+</tr>
+<tr>
+<td>char</td>
+<td>float</td>
+<td>reinterpret_cast</td>
+<td>typename</td>
+</tr>
+<tr>
+<td>class</td>
+<td>for</td>
+<td>return</td>
+<td>union</td>
+</tr>
+<tr>
+<td>const</td>
+<td>friend</td>
+<td>short</td>
+<td>unsigned</td>
+</tr>
+<tr>
+<td>const_cast</td>
+<td>goto</td>
+<td>signed</td>
+<td>using</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>if</td>
+<td>sizeof</td>
+<td>virtual</td>
+</tr>
+<tr>
+<td>default</td>
+<td>inline</td>
+<td>static</td>
+<td>void</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>int</td>
+<td>static_cast</td>
+<td>volatile</td>
+</tr>
+<tr>
+<td>do</td>
+<td>long</td>
+<td>struct</td>
+<td>wchar_t</td>
+</tr>
+<tr>
+<td>double</td>
+<td>mutable</td>
+<td>switch</td>
+<td>while</td>
+</tr>
+<tr>
+<td>dynamic_cast</td>
+<td>namespace</td>
+<td>template</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="trigraphs"><strong>Trigraphs</strong></h2>
+<p>A few characters have an alternative representation, called a trigraph sequence. A trigraph is a three-character sequence that represents a single character and the sequence always starts with two question marks.</p>
+<p>Trigraphs are expanded anywhere they appear, including within string literals and character literals, in comments, and in preprocessor directives.</p>
+<p>The following are the most frequently used trigraph sequences −</p>
+<p>| Trigraph | Replacement |
+| -------- | ----------- | --- |
+| ??=      | #           |
+| ??/      | \           |
+| ??'      | ^           |
+| ??(      | [           |
+| ??)      | ]           |
+| ??!      |             |     |
+| ??&lt;      | {           |
+| ??&gt;      | }           |
+| ??-      | ~           |</p>
+<h2 id="whitespace-in-c"><strong>Whitespace in C++</strong></h2>
+<p>A line containing only whitespace, possibly with a comment, is known as a blank line, and C++ compiler totally ignores it.</p>
+<p>Whitespace is the term used in C++ to describe blanks, tabs, newline characters, and comments. Whitespace separates one part of a statement from another and enables the compiler to identify where one element in a statement, such as int, ends and the next element begins.</p>
+<p><code>int age;</code></p>
+<p>In the above statement, there must be at least one whitespace character (usually a space) between int and age for the compiler to be able to distinguish them.</p>
+<p><code>fruit = apples + oranges;   // Get the total fruit</code></p>
+<p>In the above statement 2, no whitespace characters are necessary between fruit and =, or between = and apples, although you are free to include some if you wish for readability purposes.</p>
+<h1 id="comments-in-c">*<strong>*Comments in C++**</strong></h1>
+<pre><code class="language-cpp"><span class="hljs-comment">/* This is a comment */</span>
+
+<span class="hljs-comment">/* C++ comments can also
+   * span multiple lines
+*/</span>
+</code></pre>
+<pre><code class="language-cpp"><span class="hljs-comment">/* Comment out printing of Hello World:
+
+cout &lt;&lt; &quot;Hello World&quot;; // prints Hello World
+
+*/</span>
+</code></pre>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>

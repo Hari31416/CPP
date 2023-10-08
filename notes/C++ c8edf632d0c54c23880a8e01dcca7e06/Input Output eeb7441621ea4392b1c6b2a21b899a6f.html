@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Input&sol;Output</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="inputoutput">Input/Output</h1>
+<ul>
+<li><a href="#inputoutput">Input/Output</a></li>
+<li><a href="#inputoutput-in-c">Input/Output in C++</a>
+<ul>
+<li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#error-reporting">Error reporting</a></li>
+</ul>
+</li>
+<li><a href="#io-library-header-files">*<strong>*I/O Library Header Files**</strong></a></li>
+</ul>
+<h1 id="inputoutput-in-c">Input/Output in C++</h1>
+<p>Input and Output (I/O) in C++ is an essential part of the language that allows us to interact with the user and the system. In C++, there are three types of I/O streams: cin for input, cout for output, and cerr for error reporting.</p>
+<h2 id="input">Input</h2>
+<p>The <code>cin</code> stream is used to read data from the user or a file. The <code>&gt;&gt;</code> operator is used to extract data from the stream and store it in a variable.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">char</span> name[<span class="hljs-number">50</span>];
+
+   cout &lt;&lt; <span class="hljs-string">&quot;Please enter your name: &quot;</span>;
+   cin &gt;&gt; name;
+   cout &lt;&lt; <span class="hljs-string">&quot;Your name is: &quot;</span> &lt;&lt; name &lt;&lt; endl;
+
+}
+</code></pre>
+<p>When the above code is compiled and executed, it will prompt you to enter a name.</p>
+<p>We can also read multiple values in a single line using the <code>&gt;&gt;</code> operator. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> num1, num2;
+cin &gt;&gt; num1 &gt;&gt; num2;
+
+</code></pre>
+<h2 id="output">Output</h2>
+<p>The <code>cout</code> stream is used to print data to the console or a file. The <code>&lt;&lt;</code> operator is used to insert data into the stream. For example, the following code prints a string to the console:</p>
+<pre><code class="language-cpp">cout &lt;&lt; <span class="hljs-string">&quot;Hello, world!&quot;</span>;
+
+</code></pre>
+<p>We can also print multiple values in a single line using the <code>&lt;&lt;</code> operator. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> num1 = <span class="hljs-number">10</span>, num2 = <span class="hljs-number">20</span>;
+cout &lt;&lt; <span class="hljs-string">&quot;num1 = &quot;</span> &lt;&lt; num1 &lt;&lt; <span class="hljs-string">&quot;, num2 = &quot;</span> &lt;&lt; num2;
+
+</code></pre>
+<h2 id="error-reporting">Error reporting</h2>
+<p>The <code>cerr</code> stream is used to report errors to the console or a file. The <code>&lt;&lt;</code> operator is used to insert error messages into the stream. For example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">char</span> str[] = <span class="hljs-string">&quot;Unable to read....&quot;</span>;
+
+   cerr &lt;&lt; <span class="hljs-string">&quot;Error message : &quot;</span> &lt;&lt; str &lt;&lt; endl;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>Error message : Unable to read....
+</code></pre>
+<h1 id="io-library-header-files">*<strong>*I/O Library Header Files**</strong></h1>
+<p>There are following header files important to C++ programs −</p>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Header File &amp; Function and Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><iostream></td>
+</tr>
+<tr>
+<td>This file defines the cin, cout, cerr and clog objects, which correspond to the standard input stream, the standard output stream, the un-buffered standard error stream and the buffered standard error stream, respectively.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><iomanip></td>
+</tr>
+<tr>
+<td>This file declares services useful for performing formatted I/O with so-called parameterized stream manipulators, such as setw and setprecision.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><fstream></td>
+</tr>
+<tr>
+<td>This file declares services for user-controlled file processing.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+        
+        
+    </body>
+    </html>

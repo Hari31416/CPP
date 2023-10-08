@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Advanced Stuffs</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="advanced-stuffs">Advanced Stuffs</h1>
+<ul>
+<li><a href="#advanced-stuffs">Advanced Stuffs</a></li>
+<li><a href="#exception-handling">*<strong>*Exception Handling**</strong></a>
+<ul>
+<li><a href="#throwing-exceptions">*<strong>*Throwing Exceptions**</strong></a></li>
+<li><a href="#catching-exceptions"><strong>Catching Exceptions</strong></a></li>
+<li><a href="#c-standard-exceptions"><strong>C++ Standard Exceptions</strong></a></li>
+<li><a href="#define-new-exceptions">*<strong>*Define New Exceptions**</strong></a></li>
+</ul>
+</li>
+<li><a href="#dynamic-memory">*<strong>*Dynamic Memory**</strong></a>
+<ul>
+<li><a href="#new-and-delete-operators">*<strong>*<code>new</code> and <code>delete</code> Operators</strong></a></li>
+<li><a href="#dynamic-memory-allocation-for-arrays">*<strong>*Dynamic Memory Allocation for Arrays**</strong></a></li>
+<li><a href="#dynamic-memory-allocation-for-objects"><strong>Dynamic Memory Allocation for Objects</strong></a></li>
+</ul>
+</li>
+<li><a href="#namespaces">*<strong>*Namespaces**</strong></a>
+<ul>
+<li><a href="#defining-a-namespace">*<strong>*Defining a Namespace**</strong></a></li>
+<li><a href="#the-using-directive">*<strong>*The <code>using</code> directive</strong></a></li>
+<li><a href="#nested-namespaces"><strong>Nested Namespaces</strong></a></li>
+</ul>
+</li>
+</ul>
+<h1 id="exception-handling">*<strong>*Exception Handling**</strong></h1>
+<p>Exceptions provide a way to transfer control from one part of a program to another. C++ exception handling is built upon three keywords: <strong>try, catch,</strong> and <strong>throw</strong>.</p>
+<ul>
+<li><strong>throw</strong> − A program throws an exception when a problem shows up. This is done using a <strong>throw</strong> keyword.</li>
+<li><strong>catch</strong> − A program catches an exception with an exception handler at the place in a program where you want to handle the problem. The <strong>catch</strong> keyword indicates the catching of an exception.</li>
+<li><strong>try</strong> − A <strong>try</strong> block identifies a block of code for which particular exceptions will be activated. It's followed by one or more catch blocks.</li>
+</ul>
+<p>Assuming a block will raise an exception, a method catches an exception using a combination of the <strong>try</strong> and <strong>catch</strong> keywords. A try/catch block is placed around the code that might generate an exception. Code within a try/catch block is referred to as protected code, and the syntax for using try/catch as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">try</span> {
+   <span class="hljs-comment">// protected code</span>
+} <span class="hljs-built_in">catch</span>( ExceptionName e1 ) {
+   <span class="hljs-comment">// catch block</span>
+} <span class="hljs-built_in">catch</span>( ExceptionName e2 ) {
+   <span class="hljs-comment">// catch block</span>
+} <span class="hljs-built_in">catch</span>( ExceptionName eN ) {
+   <span class="hljs-comment">// catch block</span>
+}
+
+</code></pre>
+<p>You can list down multiple <strong>catch</strong> statements to catch different type of exceptions in case your <strong>try</strong> block raises more than one exception in different situations.</p>
+<h2 id="throwing-exceptions">*<strong>*Throwing Exceptions**</strong></h2>
+<p>Exceptions can be thrown anywhere within a code block using <strong>throw</strong> statement. The operand of the throw statement determines a type for the exception and can be any expression and the type of the result of the expression determines the type of exception thrown.</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">division</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>{
+   <span class="hljs-keyword">if</span>( b == <span class="hljs-number">0</span> ) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;Division by zero condition!&quot;</span>;
+   }
+   <span class="hljs-keyword">return</span> (a/b);
+}
+</code></pre>
+<h2 id="catching-exceptions"><strong>Catching Exceptions</strong></h2>
+<p>The <strong>catch</strong> block following the <strong>try</strong> block catches any exception. You can specify what type of exception you want to catch and this is determined by the exception declaration that appears in parentheses following the keyword catch.</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">try</span> {
+   <span class="hljs-comment">// protected code</span>
+} <span class="hljs-built_in">catch</span>( ExceptionName e ) {
+  <span class="hljs-comment">// code to handle ExceptionName exception</span>
+}
+</code></pre>
+<p>Above code will catch an exception of <strong>ExceptionName</strong> type. If you want to specify that a catch block should handle any type of exception that is thrown in a try block, you must put an ellipsis, ..., between the parentheses enclosing the exception declaration as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">try</span> {
+   <span class="hljs-comment">// protected code</span>
+} <span class="hljs-built_in">catch</span>(...) {
+  <span class="hljs-comment">// code to handle any exception</span>
+}
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">division</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> </span>{
+   <span class="hljs-keyword">if</span>( b == <span class="hljs-number">0</span> ) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;Division by zero condition!&quot;</span>;
+   }
+   <span class="hljs-keyword">return</span> (a/b);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span> x = <span class="hljs-number">50</span>;
+   <span class="hljs-type">int</span> y = <span class="hljs-number">0</span>;
+   <span class="hljs-type">double</span> z = <span class="hljs-number">0</span>;
+
+   <span class="hljs-keyword">try</span> {
+      z = <span class="hljs-built_in">division</span>(x, y);
+      cout &lt;&lt; z &lt;&lt; endl;
+   } <span class="hljs-built_in">catch</span> (<span class="hljs-type">const</span> <span class="hljs-type">char</span>* msg) {
+     cerr &lt;&lt; msg &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Because we are raising an exception of type <strong>const char*</strong>, so while catching this exception, we have to use const char* in catch block.</p>
+<h2 id="c-standard-exceptions"><strong>C++ Standard Exceptions</strong></h2>
+<p>C++ provides a list of standard exceptions defined in <strong><exception></strong> which we can use in our programs. These are arranged in a parent-child class hierarchy shown below:</p>
+<p><img src="https://www.tutorialspoint.com/cplusplus/images/cpp_exceptions.jpg" alt="https://www.tutorialspoint.com/cplusplus/images/cpp_exceptions.jpg"></p>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Exception &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>std::exception</td>
+</tr>
+<tr>
+<td>An exception and parent class of all the standard C++ exceptions.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>std::bad_alloc</td>
+</tr>
+<tr>
+<td>This can be thrown by new.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>std::bad_cast</td>
+</tr>
+<tr>
+<td>This can be thrown by dynamic_cast.</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>std::bad_exception</td>
+</tr>
+<tr>
+<td>This is useful device to handle unexpected exceptions in a C++ program.</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>std::bad_typeid</td>
+</tr>
+<tr>
+<td>This can be thrown by typeid.</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>std::logic_error</td>
+</tr>
+<tr>
+<td>An exception that theoretically can be detected by reading the code.</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>std::domain_error</td>
+</tr>
+<tr>
+<td>This is an exception thrown when a mathematically invalid domain is used.</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>std::invalid_argument</td>
+</tr>
+<tr>
+<td>This is thrown due to invalid arguments.</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>std::length_error</td>
+</tr>
+<tr>
+<td>This is thrown when a too big std::string is created.</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>std::out_of_range</td>
+</tr>
+<tr>
+<td>This can be thrown by the 'at' method, for example a std::vector and std::bitset&lt;&gt;::operator<a href=""></a>.</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>std::runtime_error</td>
+</tr>
+<tr>
+<td>An exception that theoretically cannot be detected by reading the code.</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td>std::overflow_error</td>
+</tr>
+<tr>
+<td>This is thrown if a mathematical overflow occurs.</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>std::range_error</td>
+</tr>
+<tr>
+<td>This is occurred when you try to store a value which is out of range.</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>std::underflow_error</td>
+</tr>
+<tr>
+<td>This is thrown if a mathematical underflow occurs.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="define-new-exceptions">*<strong>*Define New Exceptions**</strong></h2>
+<p>You can define your own exceptions by inheriting and overriding <strong><code>exception</code></strong> class functionality. Following is the example, which shows how you can use <code>std::exception</code> class to implement your own exception in standard way</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;exception&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">MyException</span> : <span class="hljs-keyword">public</span> exception {
+   <span class="hljs-function"><span class="hljs-type">const</span> <span class="hljs-type">char</span> * <span class="hljs-title">what</span> <span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-title">throw</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;C++ Exception&quot;</span>;
+   }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">throw</span> <span class="hljs-built_in">MyException</span>();
+   } <span class="hljs-built_in">catch</span>(MyException&amp; e) {
+      std::cout &lt;&lt; <span class="hljs-string">&quot;MyException caught&quot;</span> &lt;&lt; std::endl;
+      std::cout &lt;&lt; e.<span class="hljs-built_in">what</span>() &lt;&lt; std::endl;
+   } <span class="hljs-built_in">catch</span>(std::exception&amp; e) {
+      <span class="hljs-comment">//Other errors</span>
+   }
+}
+</code></pre>
+<pre><code>MyException caught
+C++ Exception
+</code></pre>
+<h1 id="dynamic-memory">*<strong>*Dynamic Memory**</strong></h1>
+<p>Memory in your C++ program is divided into two parts −</p>
+<ul>
+<li><strong>The stack</strong> − All variables declared inside the function will take up memory from the stack.</li>
+<li><strong>The heap</strong> − This is unused memory of the program and can be used to allocate the memory dynamically when program runs.</li>
+</ul>
+<p>You can allocate memory at run time within the heap for the variable of a given type using a special operator in C++ which returns the address of the space allocated. This operator is called  <strong><code>new</code></strong>  operator.</p>
+<p>If you are not in need of dynamically allocated memory anymore, you can use <strong><code>delete</code></strong> operator, which de-allocates memory that was previously allocated by new operator.</p>
+<h2 id="new-and-delete-operators">*<strong>*<code>new</code> and <code>delete</code> Operators</strong></h2>
+<p>There is following generic syntax to use <strong>new</strong> operator to allocate memory dynamically for any data-type.</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">new</span> data-type;
+</code></pre>
+<p>Here, <strong>data-type</strong> could be any built-in data type including an array or any user defined data types include class or structure.</p>
+<p>At any point, when you feel a variable that has been dynamically allocated is not anymore required, you can free up the memory that it occupies in the free store with the ‘delete’ operator as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">delete</span> pvalue;
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">double</span>* pvalue  = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">// Pointer initialized with null</span>
+   pvalue  = <span class="hljs-keyword">new</span> <span class="hljs-type">double</span>;   <span class="hljs-comment">// Request memory for the variable</span>
+
+   *pvalue = <span class="hljs-number">29494.99</span>;     <span class="hljs-comment">// Store value at allocated address</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Value of pvalue : &quot;</span> &lt;&lt; *pvalue &lt;&lt; endl;
+
+   <span class="hljs-keyword">delete</span> pvalue;         <span class="hljs-comment">// free up the memory.</span>
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="dynamic-memory-allocation-for-arrays">*<strong>*Dynamic Memory Allocation for Arrays**</strong></h2>
+<p>Consider you want to allocate memory for an array of characters, i.e., string of 20 characters. Using the same syntax what we have used above we can allocate memory dynamically as shown below.</p>
+<pre><code class="language-cpp"><span class="hljs-type">char</span>* pvalue  = <span class="hljs-literal">NULL</span>;         <span class="hljs-comment">// Pointer initialized with null</span>
+pvalue  = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[<span class="hljs-number">20</span>];
+</code></pre>
+<h2 id="dynamic-memory-allocation-for-objects"><strong>Dynamic Memory Allocation for Objects</strong></h2>
+<p>Objects are no different from simple data types. For example, consider the following code where we are going to use an array of objects to clarify the concept −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-built_in">Box</span>() {
+         cout &lt;&lt; <span class="hljs-string">&quot;Constructor called!&quot;</span> &lt;&lt;endl;
+      }
+      ~<span class="hljs-built_in">Box</span>() {
+         cout &lt;&lt; <span class="hljs-string">&quot;Destructor called!&quot;</span> &lt;&lt;endl;
+      }
+};
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Box* myBoxArray = <span class="hljs-keyword">new</span> Box[<span class="hljs-number">4</span>];
+   <span class="hljs-keyword">delete</span> [] myBoxArray; <span class="hljs-comment">// Delete array</span>
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>If you were to allocate an array of four Box objects, the Simple constructor would be called four times and similarly while deleting these objects, destructor will also be called same number of times.</p>
+<p>If we compile and run above code, this would produce the following result −</p>
+<pre><code>Constructor called!
+Constructor called!
+Constructor called!
+Constructor called!
+Destructor called!
+Destructor called!
+Destructor called!
+Destructor called!
+</code></pre>
+<h1 id="namespaces">*<strong>*Namespaces**</strong></h1>
+<p>You might be writing some code that has a function called xyz() and there is another library available which is also having same function xyz(). Now the compiler has no way of knowing which version of xyz() function you are referring to within your code.</p>
+<p>A <strong>namespace</strong> is designed to overcome this difficulty and is used as additional information to differentiate similar functions, classes, variables etc. with the same name available in different libraries. Using namespace, you can define the context in which names are defined. In essence, a namespace defines a scope.</p>
+<h2 id="defining-a-namespace">*<strong>*Defining a Namespace**</strong></h2>
+<p>A namespace definition begins with the keyword <strong>namespace</strong> followed by the namespace name as follows −</p>
+<pre><code>namespace namespace_name {
+   // code declarations
+}
+
+</code></pre>
+<p>To call the namespace-enabled version of either function or variable, prepend (::) the namespace name as follows −</p>
+<pre><code>name::code;  // code could be variable or function.
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// first name space</span>
+<span class="hljs-keyword">namespace</span> first_space {
+   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+      cout &lt;&lt; <span class="hljs-string">&quot;Inside first_space&quot;</span> &lt;&lt; endl;
+   }
+}
+
+<span class="hljs-comment">// second name space</span>
+<span class="hljs-keyword">namespace</span> second_space {
+   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+      cout &lt;&lt; <span class="hljs-string">&quot;Inside second_space&quot;</span> &lt;&lt; endl;
+   }
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Calls function from first name space.</span>
+   first_space::<span class="hljs-built_in">func</span>();
+
+   <span class="hljs-comment">// Calls function from second name space.</span>
+   second_space::<span class="hljs-built_in">func</span>();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>If we compile and run above code, this would produce the following result −</p>
+<pre><code>Inside first_space
+Inside second_space
+</code></pre>
+<h2 id="the-using-directive">*<strong>*The <code>using</code> directive</strong></h2>
+<p>You can also avoid prepending of namespaces with the <strong>using namespace</strong> directive. This directive tells the compiler that the subsequent code is making use of names in the specified namespace. The namespace is thus implied for the following code:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// first name space</span>
+<span class="hljs-keyword">namespace</span> first_space {
+   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+      cout &lt;&lt; <span class="hljs-string">&quot;Inside first_space&quot;</span> &lt;&lt; endl;
+   }
+}
+
+<span class="hljs-comment">// second name space</span>
+<span class="hljs-keyword">namespace</span> second_space {
+   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+      cout &lt;&lt; <span class="hljs-string">&quot;Inside second_space&quot;</span> &lt;&lt; endl;
+   }
+}
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> first_space;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// This calls function from first name space.</span>
+   <span class="hljs-built_in">func</span>();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>If we compile and run above code, this would produce the following result −</p>
+<pre><code>Inside first_space
+</code></pre>
+<p>The <code>usin</code> directive can also be used to refer to a particular item within a namespace. For example, if the only part of the std namespace that you intend to use is cout, you can refer to it as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">using</span> std::cout;
+
+</code></pre>
+<p>Subsequent code can refer to cout without prepending the namespace, but other items in the <strong><code>std</code></strong> namespace will still need to be explicit as follows</p>
+<h2 id="nested-namespaces"><strong>Nested Namespaces</strong></h2>
+<p>Namespaces can be nested where you can define one namespace inside another name space as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">namespace</span> namespace_name1 {
+   <span class="hljs-comment">// code declarations</span>
+   <span class="hljs-keyword">namespace</span> namespace_name2 {
+      <span class="hljs-comment">// code declarations</span>
+   }
+}
+
+</code></pre>
+<p>You can access members of nested namespace by using resolution operators as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-comment">// to access members of namespace_name2</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> namespace_name1::namespace_name2;
+
+<span class="hljs-comment">// to access members of namespace:name1</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> namespace_name1;
+
+</code></pre>
+<p>In the above statements if you are using namespace_name1, then it will make elements of namespace_name2 available in the scope as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// first name space</span>
+<span class="hljs-keyword">namespace</span> first_space {
+   <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+      cout &lt;&lt; <span class="hljs-string">&quot;Inside first_space&quot;</span> &lt;&lt; endl;
+   }
+
+   <span class="hljs-comment">// second name space</span>
+   <span class="hljs-keyword">namespace</span> second_space {
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;Inside second_space&quot;</span> &lt;&lt; endl;
+      }
+   }
+}
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> first_space::second_space;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// This calls function from second name space.</span>
+   <span class="hljs-built_in">func</span>();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>If we compile and run above code, this would produce the following result −</p>
+<pre><code>Inside second_space
+</code></pre>
+
+        
+        
+    </body>
+    </html>

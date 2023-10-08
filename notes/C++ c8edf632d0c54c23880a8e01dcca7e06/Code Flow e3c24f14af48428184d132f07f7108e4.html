@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Code Flow</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="code-flow">Code Flow</h1>
+<ul>
+<li><a href="#code-flow">Code Flow</a></li>
+<li><a href="#operators">Operators</a>
+<ul>
+<li><a href="#arithmetic-operators">*<strong>*Arithmetic Operators**</strong></a></li>
+<li><a href="#relational-operators">*<strong>*Relational Operators**</strong></a></li>
+<li><a href="#logical-operators">*<strong>*Logical Operators**</strong></a></li>
+<li><a href="#bitwise-operators">*<strong>*Bitwise Operators**</strong></a></li>
+<li><a href="#misc-operators"><strong>Misc Operators</strong></a></li>
+<li><a href="#operators-precedence-in-c">*<strong>*Operators Precedence in C++**</strong></a></li>
+</ul>
+</li>
+<li><a href="#loops">Loops</a>
+<ul>
+<li><a href="#while-loop"><code>while</code> Loop</a></li>
+<li><a href="#for-loop"><code>for</code> Loop</a></li>
+<li><a href="#dowhile-loop"><code>do...while</code> Loop</a></li>
+<li><a href="#loop-control-statements">*<strong>*Loop Control Statements**</strong></a>
+<ul>
+<li><a href="#break-statement"><code>break</code> Statement</a></li>
+<li><a href="#continue-statement"><code>continue</code> Statement</a></li>
+<li><a href="#the-infinite-loop"><strong>The Infinite Loop</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#control-flow">Control Flow</a>
+<ul>
+<li><a href="#conditional---operator">*<strong>*Conditional ? : Operator**</strong></a></li>
+</ul>
+</li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#function-declarations"><strong>Function Declarations</strong></a></li>
+<li><a href="#calling-a-function"><strong>Calling a Function</strong></a></li>
+<li><a href="#function-arguments"><strong>Function Arguments</strong></a>
+<ul>
+<li><a href="#call-by-value">Call by Value</a></li>
+<li><a href="#call-by-pointer">Call by Pointer</a></li>
+<li><a href="#call-by-reference">Call by Reference</a></li>
+</ul>
+</li>
+<li><a href="#default-values-for-parameters">*<strong>*Default Values for Parameters**</strong></a></li>
+</ul>
+</li>
+</ul>
+<h1 id="operators">Operators</h1>
+<p>An operator is a symbol that tells the compiler to perform specific mathematical or logical manipulations. C++ is rich in built-in operators and provide the following types of operators −</p>
+<ul>
+<li>Arithmetic Operators</li>
+<li>Relational Operators</li>
+<li>Logical Operators</li>
+<li>Bitwise Operators</li>
+<li>Assignment Operators</li>
+<li>Misc Operators</li>
+</ul>
+<h2 id="arithmetic-operators">*<strong>*Arithmetic Operators**</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>Adds two operands</td>
+<td>A + B will give 30</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Subtracts second operand from the first</td>
+<td>A - B will give -10</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiplies both operands</td>
+<td>A * B will give 200</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Divides numerator by de-numerator</td>
+<td>B / A will give 2</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Modulus Operator and remainder of after an integer division</td>
+<td>B % A will give 0</td>
+</tr>
+<tr>
+<td>++</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_increment_decrement_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_increment_decrement_operators.htm</a>, increases integer value by one</td>
+<td>A++ will give 11</td>
+</tr>
+<tr>
+<td>--</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_increment_decrement_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_increment_decrement_operators.htm</a>, decreases integer value by one</td>
+<td>A-- will give 9</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relational-operators">*<strong>*Relational Operators**</strong></h2>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>Checks if the values of two operands are equal or not, if yes then condition becomes true.</td>
+<td>(A == B) is not true.</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Checks if the values of two operands are equal or not, if values are not equal then condition becomes true.</td>
+<td>(A != B) is true.</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Checks if the value of left operand is greater than the value of right operand, if yes then condition becomes true.</td>
+<td>(A &gt; B) is not true.</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Checks if the value of left operand is less than the value of right operand, if yes then condition becomes true.</td>
+<td>(A &lt; B) is true.</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Checks if the value of left operand is greater than or equal to the value of right operand, if yes then condition becomes true.</td>
+<td>(A &gt;= B) is not true.</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Checks if the value of left operand is less than or equal to the value of right operand, if yes then condition becomes true.</td>
+<td>(A &lt;= B) is true.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="logical-operators">*<strong>*Logical Operators**</strong></h2>
+<p>| Operator | Description                                                                                                                                       | Example            |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------ | --- | --- | ----------- |
+| &amp;&amp;       | Called Logical AND operator. If both the operands are non-zero, then condition becomes true.                                                      | (A &amp;&amp; B) is false. |
+|          |                                                                                                                                                   |                    | Called Logical OR Operator. If any of the two operands is non-zero, then condition becomes true. | (A  |     | B) is true. |
+| !        | Called Logical NOT Operator. Use to reverses the logical state of its operand. If a condition is true, then Logical NOT operator will make false. | !(A &amp;&amp; B) is true. |</p>
+<h2 id="bitwise-operators">*<strong>*Bitwise Operators**</strong></h2>
+<p>| Operator | Description                                                                                                               | Example                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | --- | ---------------------------------- |
+| &amp;        | Binary AND Operator copies a bit to the result if it exists in both operands.                                             | (A &amp; B) will give 12 which is 0000 1100                                                      |
+|          |                                                                                                                           | Binary OR Operator copies a bit if it exists in either operand.                              | (A  | B) will give 61 which is 0011 1101 |
+| ^        | Binary XOR Operator copies the bit if it is set in one operand but not both.                                              | (A ^ B) will give 49 which is 0011 0001                                                      |
+| ~        | Binary Ones Complement Operator is unary and has the effect of 'flipping' bits.                                           | (~A ) will give -61 which is 1100 0011 in 2's complement form due to a signed binary number. |
+| &lt;&lt;       | Binary Left Shift Operator. The left operands value is moved left by the number of bits specified by the right operand.   | A &lt;&lt; 2 will give 240 which is 1111 0000                                                      |
+| &gt;&gt;       | Binary Right Shift Operator. The left operands value is moved right by the number of bits specified by the right operand. | A &gt;&gt; 2 will give 15 which is 0000 1111                                                       |</p>
+<p>A = 0011 1100</p>
+<p>B = 0000 1101</p>
+<h2 id="misc-operators"><strong>Misc Operators</strong></h2>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Operator &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>sizeof</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_sizeof_operator.htm">https://www.tutorialspoint.com/cplusplus/cpp_sizeof_operator.htm</a> returns the size of a variable. For example, sizeof(a), where ‘a’ is integer, and will return 4.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Condition ? X : Y</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_conditional_operator.htm">https://www.tutorialspoint.com/cplusplus/cpp_conditional_operator.htm</a>. If Condition is true then it returns value of X otherwise returns value of Y.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>,</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_comma_operator.htm">https://www.tutorialspoint.com/cplusplus/cpp_comma_operator.htm</a> causes a sequence of operations to be performed. The value of the entire comma expression is the value of the last expression of the comma-separated list.</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>. (dot) and -&gt; (arrow)</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_member_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_member_operators.htm</a> are used to reference individual members of classes, structures, and unions.</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cast</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_casting_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_casting_operators.htm</a> convert one data type to another. For example, int(2.2000) would return 2.</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_pointer_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_pointer_operators.htm</a> returns the address of a variable. For example &amp;a; will give actual address of the variable.</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>*</td>
+</tr>
+<tr>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_pointer_operators.htm">https://www.tutorialspoint.com/cplusplus/cpp_pointer_operators.htm</a> is pointer to a variable. For example *var; will pointer to a variable var.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="operators-precedence-in-c">*<strong>*Operators Precedence in C++**</strong></h2>
+<p>| Category       | Operator                         | Associativity |
+| -------------- | -------------------------------- | ------------- | ------------- | ------------- |
+| Postfix        | () [] -&gt; . ++ - -                | Left to right |
+| Unary          | + - ! ~ ++ - - (type)* &amp; sizeof | Right to left |
+| Multiplicative | * / %                           | Left to right |
+| Additive       | + -                              | Left to right |
+| Shift          | &lt;&lt; &gt;&gt;                            | Left to right |
+| Relational     | &lt; &lt;= &gt; &gt;=                        | Left to right |
+| Equality       | == !=                            | Left to right |
+| Bitwise AND    | &amp;                                | Left to right |
+| Bitwise XOR    | ^                                | Left to right |
+| Bitwise OR     |                                  |               | Left to right |
+| Logical AND    | &amp;&amp;                               | Left to right |
+| Logical OR     |                                  |               |               | Left to right |
+| Conditional    | ?:                               | Right to left |
+| Assignment     | = += -= *= /= %=&gt;&gt;= &lt;&lt;= &amp;= ^=   | =             | Right to left |
+| Comma          | ,                                | Left to right |</p>
+<h1 id="loops">Loops</h1>
+<h2 id="while-loop"><code>while</code> Loop</h2>
+<p>Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body. Here is the syntax:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">while</span>(condition) {
+   <span class="hljs-built_in">statement</span>(s);
+}
+</code></pre>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+
+   <span class="hljs-comment">// while loop execution</span>
+   <span class="hljs-keyword">while</span>( a &lt; <span class="hljs-number">20</span> ) {
+      cout &lt;&lt; <span class="hljs-string">&quot;value of a: &quot;</span> &lt;&lt; a &lt;&lt; endl;
+      a++;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="for-loop"><code>for</code> Loop</h2>
+<p>Execute a sequence of statements multiple times and abbreviates the code that manages the loop variable.</p>
+<p>The syntax of a for loop in C++ is −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">for</span> ( init; condition; increment ) {
+   <span class="hljs-built_in">statement</span>(s);
+}
+</code></pre>
+<p>Here is the flow of control in a for loop −</p>
+<ul>
+<li>The <strong>init</strong> step is executed first, and only once. This step allows you to declare and initialize any loop control variables. You are not required to put a statement here, as long as a semicolon appears.</li>
+<li>Next, the <strong>condition</strong> is evaluated. If it is true, the body of the loop is executed. If it is false, the body of the loop does not execute and flow of control jumps to the next statement just after the for loop.</li>
+<li>After the body of the for loop executes, the flow of control jumps back up to the <strong>increment</strong> statement. This statement can be left blank, as long as a semicolon appears after the condition.</li>
+<li>The condition is now evaluated again. If it is true, the loop executes and the process repeats itself (body of loop, then increment step, and then again condition). After the condition becomes false, the for loop terminates.</li>
+</ul>
+<p><img src="https://www.tutorialspoint.com/cplusplus/images/cpp_for_loop.jpg" alt="https://www.tutorialspoint.com/cplusplus/images/cpp_for_loop.jpg"></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// for loop execution</span>
+   <span class="hljs-keyword">for</span>( <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>; a &lt; <span class="hljs-number">20</span>; a = a + <span class="hljs-number">1</span> ) {
+      cout &lt;&lt; <span class="hljs-string">&quot;value of a: &quot;</span> &lt;&lt; a &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="dowhile-loop"><code>do...while</code> Loop</h2>
+<p>Like a ‘while’ statement, except that it tests the condition at the end of the loop body.</p>
+<p>Unlike <strong>for</strong> and <strong>while</strong> loops, which test the loop condition at the top of the loop, the <strong>do...while</strong> loop checks its condition at the bottom of the loop.</p>
+<p>A <strong>do...while</strong> loop is similar to a while loop, except that a do...while loop is guaranteed to execute at least one time.</p>
+<p>Here is the syntax:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">do</span> {
+   <span class="hljs-built_in">statement</span>(s);
+}
+<span class="hljs-keyword">while</span>( condition );
+</code></pre>
+<h2 id="loop-control-statements">*<strong>*Loop Control Statements**</strong></h2>
+<p>Loop control statements change execution from its normal sequence. When execution leaves a scope, all automatic objects that were created in that scope are destroyed.</p>
+<p>C++ supports the following control statements.</p>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Control Statement &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_break_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_break_statement.htm</a></td>
+</tr>
+<tr>
+<td>Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_continue_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_continue_statement.htm</a></td>
+</tr>
+<tr>
+<td>Causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_goto_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_goto_statement.htm</a></td>
+</tr>
+<tr>
+<td>Transfers control to the labeled statement. Though it is not advised to use goto statement in your program.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="break-statement"><code>break</code> Statement</h3>
+<p>When the <strong>break</strong> statement is encountered inside a loop, the loop is immediately terminated and program control resumes at the next statement following the loop.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+
+   <span class="hljs-comment">// do loop execution</span>
+   <span class="hljs-keyword">do</span> {
+      cout &lt;&lt; <span class="hljs-string">&quot;value of a: &quot;</span> &lt;&lt; a &lt;&lt; endl;
+      a = a + <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">if</span>( a &gt; <span class="hljs-number">15</span>) {
+         <span class="hljs-comment">// terminate the loop</span>
+         <span class="hljs-keyword">break</span>;
+      }
+   } <span class="hljs-keyword">while</span>( a &lt; <span class="hljs-number">20</span> );
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="continue-statement"><code>continue</code> Statement</h3>
+<p>The <strong>continue</strong> statement works somewhat like the break statement. Instead of forcing termination, however, continue forces the next iteration of the loop to take place, skipping any code in between.</p>
+<h3 id="the-infinite-loop"><strong>The Infinite Loop</strong></h3>
+<p>A loop becomes infinite loop if a condition never becomes false. The <strong>for</strong> loop is traditionally used for this purpose. Since none of the three expressions that form the ‘for’ loop are required, you can make an endless loop by leaving the conditional expression empty.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">for</span>( ; ; ) {
+      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;This loop will run forever.\n&quot;</span>);
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h1 id="control-flow">Control Flow</h1>
+<p>C++ programming language provides following types of decision making statements.</p>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Statement &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_if_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_if_statement.htm</a></td>
+</tr>
+<tr>
+<td>An ‘if’ statement consists of a boolean expression followed by one or more statements.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_if_else_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_if_else_statement.htm</a></td>
+</tr>
+<tr>
+<td>An ‘if’ statement can be followed by an optional ‘else’ statement, which executes when the boolean expression is false.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm">https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm</a></td>
+</tr>
+<tr>
+<td>A ‘switch’ statement allows a variable to be tested for equality against a list of values.</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_nested_if.htm">https://www.tutorialspoint.com/cplusplus/cpp_nested_if.htm</a></td>
+</tr>
+<tr>
+<td>You can use one ‘if’ or ‘else if’ statement inside another ‘if’ or ‘else if’ statement(s).</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_nested_switch.htm">https://www.tutorialspoint.com/cplusplus/cpp_nested_switch.htm</a></td>
+</tr>
+<tr>
+<td>You can use one ‘switch’ statement inside another ‘switch’ statement(s).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The syntax of an if statement in C++ is −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">if</span>(boolean_expression) {
+   <span class="hljs-comment">// statement(s) will execute if the boolean expression is true</span>
+}
+
+</code></pre>
+<p>Example <code>if</code></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+
+   <span class="hljs-comment">// check the boolean condition</span>
+   <span class="hljs-keyword">if</span>( a &lt; <span class="hljs-number">20</span> ) {
+      <span class="hljs-comment">// if condition is true then print the following</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;a is less than 20;&quot;</span> &lt;&lt; endl;
+   }
+   cout &lt;&lt; <span class="hljs-string">&quot;value of a is : &quot;</span> &lt;&lt; a &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Example <code>if..else</code></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">100</span>;
+
+   <span class="hljs-comment">// check the boolean condition</span>
+   <span class="hljs-keyword">if</span>( a &lt; <span class="hljs-number">20</span> ) {
+      <span class="hljs-comment">// if condition is true then print the following</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;a is less than 20;&quot;</span> &lt;&lt; endl;
+   } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// if condition is false then print the following</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;a is not less than 20;&quot;</span> &lt;&lt; endl;
+   }
+   cout &lt;&lt; <span class="hljs-string">&quot;value of a is : &quot;</span> &lt;&lt; a &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Example <code>if..else if..else</code></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">100</span>;
+
+   <span class="hljs-comment">// check the boolean condition</span>
+   <span class="hljs-keyword">if</span>( a == <span class="hljs-number">10</span> ) {
+      <span class="hljs-comment">// if condition is true then print the following</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of a is 10&quot;</span> &lt;&lt; endl;
+   } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( a == <span class="hljs-number">20</span> ) {
+      <span class="hljs-comment">// if else if condition is true</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of a is 20&quot;</span> &lt;&lt; endl;
+   } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( a == <span class="hljs-number">30</span> ) {
+      <span class="hljs-comment">// if else if condition is true</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of a is 30&quot;</span> &lt;&lt; endl;
+   } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// if none of the conditions is true</span>
+      cout &lt;&lt; <span class="hljs-string">&quot;Value of a is not matching&quot;</span> &lt;&lt; endl;
+   }
+   cout &lt;&lt; <span class="hljs-string">&quot;Exact value of a is : &quot;</span> &lt;&lt; a &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Example <code>switch</code></p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">char</span> grade = <span class="hljs-string">&#x27;D&#x27;</span>;
+
+   <span class="hljs-keyword">switch</span>(grade) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;A&#x27;</span> :
+         cout &lt;&lt; <span class="hljs-string">&quot;Excellent!&quot;</span> &lt;&lt; endl;
+         <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;B&#x27;</span> :
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;C&#x27;</span> :
+         cout &lt;&lt; <span class="hljs-string">&quot;Well done&quot;</span> &lt;&lt; endl;
+         <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;D&#x27;</span> :
+         cout &lt;&lt; <span class="hljs-string">&quot;You passed&quot;</span> &lt;&lt; endl;
+         <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;F&#x27;</span> :
+         cout &lt;&lt; <span class="hljs-string">&quot;Better try again&quot;</span> &lt;&lt; endl;
+         <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">default</span> :
+         cout &lt;&lt; <span class="hljs-string">&quot;Invalid grade&quot;</span> &lt;&lt; endl;
+   }
+   cout &lt;&lt; <span class="hljs-string">&quot;Your grade is &quot;</span> &lt;&lt; grade &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="conditional---operator">*<strong>*Conditional ? : Operator**</strong></h2>
+<p>The syntax is</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">if</span>(condition) {
+   var = X;
+} <span class="hljs-keyword">else</span> {
+   var = Y;
+}
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Local variable declaration:</span>
+   <span class="hljs-type">int</span> x, y = <span class="hljs-number">10</span>;
+
+   x = (y &lt; <span class="hljs-number">10</span>) ? <span class="hljs-number">30</span> : <span class="hljs-number">40</span>;
+   cout &lt;&lt; <span class="hljs-string">&quot;value of x: &quot;</span> &lt;&lt; x &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h1 id="functions">Functions</h1>
+<p>The general form of a C++ function definition is as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-function">return_type <span class="hljs-title">function_name</span><span class="hljs-params">( parameter list )</span> </span>{
+   body of the function
+}
+
+</code></pre>
+<p>A C++ function definition consists of a function header and a function body. Here are all the parts of a function −</p>
+<ul>
+<li><strong>Return Type</strong> − A function may return a value. The <strong>return_type</strong> is the data type of the value the function returns. Some functions perform the desired operations without returning a value. In this case, the return_type is the keyword <strong>void</strong>.</li>
+<li><strong>Function Name</strong> − This is the actual name of the function. The function name and the parameter list together constitute the function signature.</li>
+<li><strong>Parameters</strong> − A parameter is like a placeholder. When a function is invoked, you pass a value to the parameter. This value is referred to as actual parameter or argument. The parameter list refers to the type, order, and number of the parameters of a function. Parameters are optional; that is, a function may contain no parameters.</li>
+<li><strong>Function Body</strong> − The function body contains a collection of statements that define what the function does.</li>
+</ul>
+<p>Here is an example</p>
+<pre><code class="language-cpp"><span class="hljs-comment">// function returning the max between two numbers</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> num1, <span class="hljs-type">int</span> num2)</span> </span>{
+   <span class="hljs-comment">// local variable declaration</span>
+   <span class="hljs-type">int</span> result;
+
+   <span class="hljs-keyword">if</span> (num1 &gt; num2)
+      result = num1;
+   <span class="hljs-keyword">else</span>
+      result = num2;
+
+   <span class="hljs-keyword">return</span> result;
+}
+</code></pre>
+<h2 id="function-declarations"><strong>Function Declarations</strong></h2>
+<p>A function <strong>declaration</strong> tells the compiler about a function name and how to call the function. The actual body of the function can be defined separately.</p>
+<p>A function declaration has the following parts −</p>
+<pre><code class="language-cpp"><span class="hljs-function">return_type <span class="hljs-title">function_name</span><span class="hljs-params">( parameter list )</span></span>;
+</code></pre>
+<p>For the above defined function max(), following is the function declaration −</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> num1, <span class="hljs-type">int</span> num2)</span></span>;
+</code></pre>
+<p>Parameter names are not important in function declaration only their type is required, so following is also valid declaration −</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;
+</code></pre>
+<p>Function declaration is required when you define a function in one source file and you call that function in another file. In such case, you should declare the function at the top of the file calling the function.</p>
+<h2 id="calling-a-function"><strong>Calling a Function</strong></h2>
+<p>While creating a C++ function, you give a definition of what the function has to do. To use a function, you will have to call or invoke that function.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// function declaration</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> num1, <span class="hljs-type">int</span> num2)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">100</span>;
+   <span class="hljs-type">int</span> b = <span class="hljs-number">200</span>;
+   <span class="hljs-type">int</span> ret;
+
+   <span class="hljs-comment">// calling a function to get max value.</span>
+   ret = <span class="hljs-built_in">max</span>(a, b);
+   cout &lt;&lt; <span class="hljs-string">&quot;Max value is : &quot;</span> &lt;&lt; ret &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// function returning the max between two numbers</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> num1, <span class="hljs-type">int</span> num2)</span> </span>{
+   <span class="hljs-comment">// local variable declaration</span>
+   <span class="hljs-type">int</span> result;
+
+   <span class="hljs-keyword">if</span> (num1 &gt; num2)
+      result = num1;
+   <span class="hljs-keyword">else</span>
+      result = num2;
+
+   <span class="hljs-keyword">return</span> result;
+}
+</code></pre>
+<h2 id="function-arguments"><strong>Function Arguments</strong></h2>
+<p>If a function is to use arguments, it must declare variables that accept the values of the arguments. These variables are called the <strong>formal parameters</strong> of the function.</p>
+<p>The formal parameters behave like other local variables inside the function and are created upon entry into the function and destroyed upon exit.</p>
+<p>While calling a function, there are two ways that arguments can be passed to a function −</p>
+<table>
+<thead>
+<tr>
+<th><a href="http://Sr.No">Sr.No</a></th>
+<th>Call Type &amp; Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_value.htm">https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_value.htm</a></td>
+</tr>
+<tr>
+<td>This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_pointer.htm">https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_pointer.htm</a></td>
+</tr>
+<tr>
+<td>This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_reference.htm">https://www.tutorialspoint.com/cplusplus/cpp_function_call_by_reference.htm</a></td>
+</tr>
+<tr>
+<td>This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="call-by-value">Call by Value</h3>
+<p>The <strong>call by value</strong> method of passing arguments to a function copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.</p>
+<p>By default, C++ uses call by value to pass arguments. In general, this means that code within a function cannot alter the arguments used to call the function.</p>
+<p>Consider the function <code>swap()</code> definition as follows.</p>
+<pre><code class="language-cpp"><span class="hljs-comment">// function definition to swap the values.</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>{
+   <span class="hljs-type">int</span> temp;
+
+   temp = x; <span class="hljs-comment">/* save the value of x */</span>
+   x = y;    <span class="hljs-comment">/* put y into x */</span>
+   y = temp; <span class="hljs-comment">/* put x into y */</span>
+
+   <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>This function can not change the values of <code>x</code> and <code>y</code> passed to it.</p>
+<h3 id="call-by-pointer">Call by Pointer</h3>
+<p>The <strong>call by pointer</strong> method of passing arguments to a function copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the passed argument.</p>
+<p>To pass the value by pointer, argument pointers are passed to the functions just like any other value. So accordingly you need to declare the function parameters as pointer types. See example below:</p>
+<pre><code class="language-cpp"><span class="hljs-comment">// function definition to swap the values.</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> *y)</span> </span>{
+   <span class="hljs-type">int</span> temp;
+   temp = *x; <span class="hljs-comment">/* save the value at address x */</span>
+   *x = *y; <span class="hljs-comment">/* put y into x */</span>
+   *y = temp; <span class="hljs-comment">/* put x into y */</span>
+
+   <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>Here is a functon which uses the <code>swap</code> function:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// function declaration</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *x, <span class="hljs-type">int</span> *y)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">100</span>;
+   <span class="hljs-type">int</span> b = <span class="hljs-number">200</span>;
+
+   cout &lt;&lt; <span class="hljs-string">&quot;Before swap, value of a :&quot;</span> &lt;&lt; a &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Before swap, value of b :&quot;</span> &lt;&lt; b &lt;&lt; endl;
+
+   <span class="hljs-comment">/* calling a function to swap the values.
+      * &amp;a indicates pointer to a ie. address of variable a and
+      * &amp;b indicates pointer to b ie. address of variable b.
+   */</span>
+   <span class="hljs-built_in">swap</span>(&amp;a, &amp;b);
+
+   cout &lt;&lt; <span class="hljs-string">&quot;After swap, value of a :&quot;</span> &lt;&lt; a &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;After swap, value of b :&quot;</span> &lt;&lt; b &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="call-by-reference">Call by Reference</h3>
+<p>The <strong>call by reference</strong> method of passing arguments to a function copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the passed argument.</p>
+<p>To pass the value by reference, argument reference is passed to the functions just like any other value. So accordingly you need to declare the function parameters as reference types as in the following function <strong>swap()</strong>, which exchanges the values of the two integer variables pointed to by its arguments.</p>
+<pre><code class="language-cpp"><span class="hljs-comment">// function definition to swap the values.</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;x, <span class="hljs-type">int</span> &amp;y)</span> </span>{
+   <span class="hljs-type">int</span> temp;
+   temp = x; <span class="hljs-comment">/* save the value at address x */</span>
+   x = y;    <span class="hljs-comment">/* put y into x */</span>
+   y = temp; <span class="hljs-comment">/* put x into y */</span>
+
+   <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>This function also swaps the values of <code>x</code> and <code>y</code>.</p>
+<h2 id="default-values-for-parameters">*<strong>*Default Values for Parameters**</strong></h2>
+<p>When you define a function, you can specify a default value for each of the last parameters. This value will be used if the corresponding argument is left blank when calling to the function.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">20</span>)</span> </span>{
+   <span class="hljs-type">int</span> result;
+   result = a + b;
+
+   <span class="hljs-keyword">return</span> (result);
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// local variable declaration:</span>
+   <span class="hljs-type">int</span> a = <span class="hljs-number">100</span>;
+   <span class="hljs-type">int</span> b = <span class="hljs-number">200</span>;
+   <span class="hljs-type">int</span> result;
+
+   <span class="hljs-comment">// calling a function to add the values.</span>
+   result = <span class="hljs-built_in">sum</span>(a, b);
+   cout &lt;&lt; <span class="hljs-string">&quot;Total value is :&quot;</span> &lt;&lt; result &lt;&lt; endl;
+
+   <span class="hljs-comment">// calling a function again as follows.</span>
+   result = <span class="hljs-built_in">sum</span>(a);
+   cout &lt;&lt; <span class="hljs-string">&quot;Total value is :&quot;</span> &lt;&lt; result &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result:</p>
+<pre><code>Total value is :300
+Total value is :120
+</code></pre>
+
+        
+        
+    </body>
+    </html>

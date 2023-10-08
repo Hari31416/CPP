@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>OOPs</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="oops">OOPs</h1>
+<ul>
+<li><a href="#oops">OOPs</a></li>
+<li><a href="#class">Class</a>
+<ul>
+<li><a href="#c-class-definitions"><strong>C++ Class Definitions</strong></a></li>
+<li><a href="#define-c-objects"><strong>Define C++ Objects</strong></a></li>
+<li><a href="#accessing-the-data-members"><strong>Accessing the Data Members</strong></a></li>
+<li><a href="#class-member-functions">*<strong>*Class Member Functions**</strong></a></li>
+<li><a href="#class-access-modifiers">*<strong>*Class Access Modifiers**</strong></a>
+<ul>
+<li><a href="#the-public-members"><strong>The public Members</strong></a></li>
+<li><a href="#the-private-members"><strong>The private Members</strong></a></li>
+<li><a href="#the-protected-members"><strong>The protected Members</strong></a></li>
+</ul>
+</li>
+<li><a href="#the-class-constructor"><strong>The Class Constructor</strong></a>
+<ul>
+<li><a href="#parameterized-constructor"><strong>Parameterized Constructor</strong></a></li>
+<li><a href="#using-initialization-lists-to-initialize-fields"><strong>Using Initialization Lists to Initialize Fields</strong></a></li>
+<li><a href="#the-class-destructor"><strong>The Class Destructor</strong></a></li>
+</ul>
+</li>
+<li><a href="#friend-functions">*<strong>*Friend Functions**</strong></a></li>
+<li><a href="#this-pointer"><code>this</code> Pointer</a></li>
+<li><a href="#pointer-to-class">Pointer to Class</a></li>
+<li><a href="#static-members">*<strong>*Static Members**</strong></a></li>
+<li><a href="#static-function-members"><strong>Static Function Members</strong></a></li>
+</ul>
+</li>
+<li><a href="#inheritance">Inheritance</a>
+<ul>
+<li><a href="#base-and-derived-classes">*<strong>*Base and Derived Classes**</strong></a></li>
+<li><a href="#access-control-and-inheritance">*<strong>*Access Control and Inheritance**</strong></a></li>
+<li><a href="#type-of-inheritance"><strong>Type of Inheritance</strong></a></li>
+<li><a href="#multiple-inheritance"><strong>Multiple Inheritance</strong></a></li>
+</ul>
+</li>
+<li><a href="#overloading">*<strong>*Overloading**</strong></a>
+<ul>
+<li><a href="#function-overloading">*<strong>*Function Overloading**</strong></a></li>
+<li><a href="#operators-overloading">*<strong>*Operators Overloading**</strong></a>
+<ul>
+<li><a href="#overloadablenon-overloadable-operators">*<strong>*Overloadable/Non-overloadable Operators**</strong></a></li>
+<li><a href="#negation">Negation</a></li>
+<li><a href="#increment---decrement---">*<strong>*Increment <code>++</code> &amp; Decrement <code>--</code></strong></a></li>
+<li><a href="#relational-operators">*<strong>*Relational Operators**</strong></a></li>
+<li><a href="#function-call-operator-">*<strong>*Function Call Operator <code>()</code></strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#polymorphism">*<strong>*Polymorphism**</strong></a>
+<ul>
+<li><a href="#virtual-function">*<strong>*Virtual Function**</strong></a></li>
+<li><a href="#pure-virtual-functions">*<strong>*Pure Virtual Functions**</strong></a></li>
+</ul>
+</li>
+<li><a href="#abstraction">*<strong>*Abstraction**</strong></a></li>
+<li><a href="#encapsulation">*<strong>*Encapsulation**</strong></a></li>
+<li><a href="#interfaces-abstract-classes">*<strong>*Interfaces (Abstract Classes)**</strong></a></li>
+</ul>
+<h1 id="class">Class</h1>
+<p>A class is used to specify the form of an object and it combines data representation and methods for manipulating that data into one neat package. The data and functions within a class are called members of the class.</p>
+<h2 id="c-class-definitions"><strong>C++ Class Definitions</strong></h2>
+<p>When you define a class, you define a blueprint for a data type. This doesn't actually define any data, but it does define what the class name means, that is, what an object of the class will consist of and what operations can be performed on such an object. Here is the syntax:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;   <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;  <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;   <span class="hljs-comment">// Height of a box</span>
+};
+
+</code></pre>
+<p>The keyword <strong>public</strong> determines the access attributes of the members of the class that follows it. A public member can be accessed from outside the class anywhere within the scope of the class object. You can also specify the members of a class as <strong>private</strong> or <strong>protected.</strong></p>
+<h2 id="define-c-objects"><strong>Define C++ Objects</strong></h2>
+<p>A class provides the blueprints for objects, so basically an object is created from a class. We declare objects of a class with exactly the same sort of declaration that we declare variables of basic types:</p>
+<pre><code class="language-cpp">Box Box1;          <span class="hljs-comment">// Declare Box1 of type Box</span>
+Box Box2;          <span class="hljs-comment">// Declare Box2 of type Box</span>
+</code></pre>
+<p>Both of the objects Box1 and Box2 will have their own copy of data members.</p>
+<h2 id="accessing-the-data-members"><strong>Accessing the Data Members</strong></h2>
+<p>The public data members of objects of a class can be accessed using the direct member access operator (.):</p>
+<h2 id="class-member-functions">*<strong>*Class Member Functions**</strong></h2>
+<p>A member function of a class is a function that has its definition or its prototype within the class definition like any other variable. It operates on any object of the class of which it is a member, and has access to all the members of a class for that object:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;      <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;     <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;      <span class="hljs-comment">// Height of a box</span>
+
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getVolume</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+};
+</code></pre>
+<p>If you like, you can define the same function outside the class using the <strong>scope resolution operator</strong> (::) as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Box::getVolume</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-keyword">return</span> length * breadth * height;
+}
+</code></pre>
+<p>Here is a complete example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;         <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;        <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;         <span class="hljs-comment">// Height of a box</span>
+
+      <span class="hljs-comment">// Member functions declaration</span>
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getVolume</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setBreadth</span><span class="hljs-params">( <span class="hljs-type">double</span> bre )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHeight</span><span class="hljs-params">( <span class="hljs-type">double</span> hei )</span></span>;
+};
+
+<span class="hljs-comment">// Member functions definitions</span>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Box::getVolume</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-keyword">return</span> length * breadth * height;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Box::setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span> </span>{
+   length = len;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Box::setBreadth</span><span class="hljs-params">( <span class="hljs-type">double</span> bre )</span> </span>{
+   breadth = bre;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Box::setHeight</span><span class="hljs-params">( <span class="hljs-type">double</span> hei )</span> </span>{
+   height = hei;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Box Box1;                <span class="hljs-comment">// Declare Box1 of type Box</span>
+   Box Box2;                <span class="hljs-comment">// Declare Box2 of type Box</span>
+   <span class="hljs-type">double</span> volume = <span class="hljs-number">0.0</span>;     <span class="hljs-comment">// Store the volume of a box here</span>
+
+   <span class="hljs-comment">// box 1 specification</span>
+   Box1.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">6.0</span>);
+   Box1.<span class="hljs-built_in">setBreadth</span>(<span class="hljs-number">7.0</span>);
+   Box1.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">5.0</span>);
+
+   <span class="hljs-comment">// box 2 specification</span>
+   Box2.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">12.0</span>);
+   Box2.<span class="hljs-built_in">setBreadth</span>(<span class="hljs-number">13.0</span>);
+   Box2.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">10.0</span>);
+
+   <span class="hljs-comment">// volume of box 1</span>
+   volume = Box1.<span class="hljs-built_in">getVolume</span>();
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box1 : &quot;</span> &lt;&lt; volume &lt;&lt;endl;
+
+   <span class="hljs-comment">// volume of box 2</span>
+   volume = Box2.<span class="hljs-built_in">getVolume</span>();
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box2 : &quot;</span> &lt;&lt; volume &lt;&lt;endl;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="class-access-modifiers">*<strong>*Class Access Modifiers**</strong></h2>
+<p>The access restriction to the class members is specified by the labeled <strong>public, private,</strong> and <strong>protected</strong> sections within the class body. The keywords public, private, and protected are called access specifiers.</p>
+<h3 id="the-public-members"><strong>The public Members</strong></h3>
+<p>A <strong>public</strong> member is accessible from anywhere outside the class but within a program. You can set and get the value of public variables without any member function.</p>
+<h3 id="the-private-members"><strong>The private Members</strong></h3>
+<p>A <strong>private</strong> member variable or function cannot be accessed, or even viewed from outside the class. Only the class and friend functions can access private members.</p>
+<p>By default all the members of a class would be private, for example in the following class <strong>width</strong> is a private member, which means until you label a member, it will be assumed a private member −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-type">double</span> width;
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getWidth</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+};
+</code></pre>
+<p>Practically, we define data in private section and related functions in public section so that they can be called from outside of the class as shown in the following program:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getWidth</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> width;
+};
+
+<span class="hljs-comment">// Member functions definitions</span>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Box::getWidth</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-keyword">return</span> width ;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Box::setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span> </span>{
+   width = wid;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Box box;
+
+   <span class="hljs-comment">// set box length without member function</span>
+   box.length = <span class="hljs-number">10.0</span>; <span class="hljs-comment">// OK: because length is public</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Length of box : &quot;</span> &lt;&lt; box.length &lt;&lt;endl;
+
+   <span class="hljs-comment">// set box width without member function</span>
+   <span class="hljs-comment">// box.width = 10.0; // Error: because width is private</span>
+   box.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">10.0</span>);  <span class="hljs-comment">// Use member function to set it.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Width of box : &quot;</span> &lt;&lt; box.<span class="hljs-built_in">getWidth</span>() &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="the-protected-members"><strong>The protected Members</strong></h3>
+<p>A <strong>protected</strong> member variable or function is very similar to a private member but it provided one additional benefit that they can be accessed in child classes which are called derived classes.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-type">double</span> width;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SmallBox</span>:Box { <span class="hljs-comment">// SmallBox is the derived class.</span>
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setSmallWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getSmallWidth</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+};
+
+<span class="hljs-comment">// Member functions of child class</span>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">SmallBox::getSmallWidth</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-keyword">return</span> width ;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">SmallBox::setSmallWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span> </span>{
+   width = wid;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   SmallBox box;
+
+   <span class="hljs-comment">// set box width using member function</span>
+   box.<span class="hljs-built_in">setSmallWidth</span>(<span class="hljs-number">5.0</span>);
+   cout &lt;&lt; <span class="hljs-string">&quot;Width of box : &quot;</span>&lt;&lt; box.<span class="hljs-built_in">getSmallWidth</span>() &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="the-class-constructor"><strong>The Class Constructor</strong></h2>
+<p>A class <strong>constructor</strong> is a special member function of a class that is executed whenever we create new objects of that class.</p>
+<p>A constructor will have exact same name as the class and it does not have any return type at all, not even void. Constructors can be very useful for setting initial values for certain member variables.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Line</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+      <span class="hljs-built_in">Line</span>();  <span class="hljs-comment">// This is the constructor</span>
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;
+};
+
+<span class="hljs-comment">// Member functions definitions including constructor</span>
+Line::<span class="hljs-built_in">Line</span>(<span class="hljs-type">void</span>) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being created&quot;</span> &lt;&lt; endl;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Line::setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span> </span>{
+   length = len;
+}
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Line::getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span> </span>{
+   <span class="hljs-keyword">return</span> length;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Line line;
+
+   <span class="hljs-comment">// set line length</span>
+   line.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">6.0</span>);
+   cout &lt;&lt; <span class="hljs-string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="hljs-built_in">getLength</span>() &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="parameterized-constructor"><strong>Parameterized Constructor</strong></h3>
+<p>A default constructor does not have any parameter, but if you need, a constructor can have parameters. This helps you to assign initial value to an object at the time of its creation:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Line</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+      <span class="hljs-built_in">Line</span>(<span class="hljs-type">double</span> len);  <span class="hljs-comment">// This is the constructor</span>
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;
+};
+
+<span class="hljs-comment">// Member functions definitions including constructor</span>
+Line::<span class="hljs-built_in">Line</span>( <span class="hljs-type">double</span> len) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;
+   length = len;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Line::setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span> </span>{
+   length = len;
+}
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Line::getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span> </span>{
+   <span class="hljs-keyword">return</span> length;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-function">Line <span class="hljs-title">line</span><span class="hljs-params">(<span class="hljs-number">10.0</span>)</span></span>;
+
+   <span class="hljs-comment">// get initially set length.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="hljs-built_in">getLength</span>() &lt;&lt;endl;
+
+   <span class="hljs-comment">// set line length again</span>
+   line.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">6.0</span>);
+   cout &lt;&lt; <span class="hljs-string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="hljs-built_in">getLength</span>() &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="using-initialization-lists-to-initialize-fields"><strong>Using Initialization Lists to Initialize Fields</strong></h3>
+<p>In case of parameterized constructor, you can use following syntax to initialize the fields −</p>
+<pre><code class="language-cpp">Line::<span class="hljs-built_in">Line</span>( <span class="hljs-type">double</span> len): <span class="hljs-built_in">length</span>(len) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;
+}
+</code></pre>
+<p>Above syntax is equal to the following syntax −</p>
+<pre><code class="language-cpp">Line::<span class="hljs-built_in">Line</span>( <span class="hljs-type">double</span> len) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being created, length = &quot;</span> &lt;&lt; len &lt;&lt; endl;
+   length = len;
+}
+</code></pre>
+<p>If for a class C, you have multiple fields X, Y, Z, etc., to be initialized, then use can use same syntax and separate the fields by comma as follows −</p>
+<pre><code class="language-cpp">C::<span class="hljs-built_in">C</span>( <span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b, <span class="hljs-type">double</span> c): <span class="hljs-built_in">X</span>(a), <span class="hljs-built_in">Y</span>(b), <span class="hljs-built_in">Z</span>(c) {
+   ....
+}
+</code></pre>
+<h3 id="the-class-destructor"><strong>The Class Destructor</strong></h3>
+<p>A <strong>destructor</strong> is a special member function of a class that is executed whenever an object of it's class goes out of scope or whenever the delete expression is applied to a pointer to the object of that class.</p>
+<p>A destructor will have exact same name as the class prefixed with a tilde (~) and it can neither return a value nor can it take any parameters. Destructor can be very useful for releasing resources before coming out of the program like closing files, releasing memories etc.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Line</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span></span>;
+      <span class="hljs-built_in">Line</span>();   <span class="hljs-comment">// This is the constructor declaration</span>
+      ~<span class="hljs-built_in">Line</span>();  <span class="hljs-comment">// This is the destructor: declaration</span>
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;
+};
+
+<span class="hljs-comment">// Member functions definitions including constructor</span>
+Line::<span class="hljs-built_in">Line</span>(<span class="hljs-type">void</span>) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being created&quot;</span> &lt;&lt; endl;
+}
+Line::~<span class="hljs-built_in">Line</span>(<span class="hljs-type">void</span>) {
+   cout &lt;&lt; <span class="hljs-string">&quot;Object is being deleted&quot;</span> &lt;&lt; endl;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Line::setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span> </span>{
+   length = len;
+}
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Line::getLength</span><span class="hljs-params">( <span class="hljs-type">void</span> )</span> </span>{
+   <span class="hljs-keyword">return</span> length;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Line line;
+
+   <span class="hljs-comment">// set line length</span>
+   line.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">6.0</span>);
+   cout &lt;&lt; <span class="hljs-string">&quot;Length of line : &quot;</span> &lt;&lt; line.<span class="hljs-built_in">getLength</span>() &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="friend-functions">*<strong>*Friend Functions**</strong></h2>
+<p>A friend function of a class is defined outside that class' scope but it has the right to access all private and protected members of the class. Even though the prototypes for friend functions appear in the class definition, friends are not member functions.</p>
+<p>To declare a function as a friend of a class, precede the function prototype in the class definition with keyword <strong>friend</strong> as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-type">double</span> width;
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">double</span> length;
+      <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">printWidth</span><span class="hljs-params">( Box box )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span></span>;
+};
+</code></pre>
+<p>Here is a full example</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-type">double</span> width;
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">printWidth</span><span class="hljs-params">( Box box )</span></span>;
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span></span>;
+};
+
+<span class="hljs-comment">// Member function definition</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Box::setWidth</span><span class="hljs-params">( <span class="hljs-type">double</span> wid )</span> </span>{
+   width = wid;
+}
+
+<span class="hljs-comment">// Note: printWidth() is not a member function of any class.</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printWidth</span><span class="hljs-params">( Box box )</span> </span>{
+   <span class="hljs-comment">/* Because printWidth() is a friend of Box, it can
+   directly access any member of this class */</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Width of box : &quot;</span> &lt;&lt; box.width &lt;&lt;endl;
+}
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Box box;
+
+   <span class="hljs-comment">// set box width without member function</span>
+   box.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">10.0</span>);
+
+   <span class="hljs-comment">// Use friend function to print the wdith.</span>
+   <span class="hljs-built_in">printWidth</span>( box );
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="this-pointer"><code>this</code> Pointer</h2>
+<p>Every object in C++ has access to its own address through an important pointer called <strong>this</strong> pointer. The <strong>this</strong> pointer is an implicit parameter to all member functions. Therefore, inside a member function, <code>this</code> may be used to refer to the invoking object.</p>
+<p>Friend functions do not have a <strong>this</strong> pointer, because friends are not members of a class. Only member functions have a <strong>this</strong> pointer.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// Constructor definition</span>
+      <span class="hljs-built_in">Box</span>(<span class="hljs-type">double</span> l = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> b = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> h = <span class="hljs-number">2.0</span>) {
+         cout &lt;&lt;<span class="hljs-string">&quot;Constructor called.&quot;</span> &lt;&lt; endl;
+         length = l;
+         breadth = b;
+         height = h;
+      }
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Volume</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Box box)</span> </span>{
+         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">Volume</span>() &gt; box.<span class="hljs-built_in">Volume</span>();
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;     <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;    <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;     <span class="hljs-comment">// Height of a box</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-function">Box <span class="hljs-title">Box1</span><span class="hljs-params">(<span class="hljs-number">3.3</span>, <span class="hljs-number">1.2</span>, <span class="hljs-number">1.5</span>)</span></span>;    <span class="hljs-comment">// Declare box1</span>
+   <span class="hljs-function">Box <span class="hljs-title">Box2</span><span class="hljs-params">(<span class="hljs-number">8.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span>)</span></span>;    <span class="hljs-comment">// Declare box2</span>
+
+   <span class="hljs-keyword">if</span>(Box1.<span class="hljs-built_in">compare</span>(Box2)) {
+      cout &lt;&lt; <span class="hljs-string">&quot;Box2 is smaller than Box1&quot;</span> &lt;&lt;endl;
+   } <span class="hljs-keyword">else</span> {
+      cout &lt;&lt; <span class="hljs-string">&quot;Box2 is equal to or larger than Box1&quot;</span> &lt;&lt;endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>The output is</p>
+<pre><code>Constructor called.
+Constructor called.
+Box2 is equal to or larger than Box1
+</code></pre>
+<h2 id="pointer-to-class">Pointer to Class</h2>
+<p>A pointer to a C++ class is done exactly the same way as a pointer to a structure and to access members of a pointer to a class you use the member access operator <strong><code>-&gt;</code></strong> operator, just as you do with pointers to structures. Also as with all pointers, you must initialize the pointer before using it.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// Constructor definition</span>
+      <span class="hljs-built_in">Box</span>(<span class="hljs-type">double</span> l = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> b = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> h = <span class="hljs-number">2.0</span>) {
+         cout &lt;&lt;<span class="hljs-string">&quot;Constructor called.&quot;</span> &lt;&lt; endl;
+         length = l;
+         breadth = b;
+         height = h;
+      }
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Volume</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;     <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;    <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;     <span class="hljs-comment">// Height of a box</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-function">Box <span class="hljs-title">Box1</span><span class="hljs-params">(<span class="hljs-number">3.3</span>, <span class="hljs-number">1.2</span>, <span class="hljs-number">1.5</span>)</span></span>;    <span class="hljs-comment">// Declare box1</span>
+   <span class="hljs-function">Box <span class="hljs-title">Box2</span><span class="hljs-params">(<span class="hljs-number">8.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span>)</span></span>;    <span class="hljs-comment">// Declare box2</span>
+   Box *ptrBox;                <span class="hljs-comment">// Declare pointer to a class.</span>
+
+   <span class="hljs-comment">// Save the address of first object</span>
+   ptrBox = &amp;Box1;
+
+   <span class="hljs-comment">// Now try to access a member using member access operator</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box1: &quot;</span> &lt;&lt; ptrBox-&gt;<span class="hljs-built_in">Volume</span>() &lt;&lt; endl;
+
+   <span class="hljs-comment">// Save the address of second object</span>
+   ptrBox = &amp;Box2;
+
+   <span class="hljs-comment">// Now try to access a member using member access operator</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box2: &quot;</span> &lt;&lt; ptrBox-&gt;<span class="hljs-built_in">Volume</span>() &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>The output, as expected is</p>
+<pre><code>Constructor called.
+Constructor called.
+Volume of Box1: 5.94
+Volume of Box2: 102
+</code></pre>
+<h2 id="static-members">*<strong>*Static Members**</strong></h2>
+<p>We can define class members static using <strong>static</strong> keyword. When we declare a member of a class as static it means no matter how many objects of the class are created, there is only one copy of the static member.</p>
+<p>A static member is shared by all objects of the class. All static data is initialized to zero when the first object is created, if no other initialization is present. We can't put it in the class definition but it can be initialized outside the class as done in the following example by redeclaring the static variable, using the scope resolution operator <strong><code>::</code></strong> to identify which class it belongs to.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">static</span> <span class="hljs-type">int</span> objectCount;
+
+      <span class="hljs-comment">// Constructor definition</span>
+      <span class="hljs-built_in">Box</span>(<span class="hljs-type">double</span> l = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> b = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> h = <span class="hljs-number">2.0</span>) {
+         cout &lt;&lt;<span class="hljs-string">&quot;Constructor called.&quot;</span> &lt;&lt; endl;
+         length = l;
+         breadth = b;
+         height = h;
+
+         <span class="hljs-comment">// Increase every time object is created</span>
+         objectCount++;
+      }
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Volume</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;     <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;    <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;     <span class="hljs-comment">// Height of a box</span>
+};
+
+<span class="hljs-comment">// Initialize static member of class Box</span>
+<span class="hljs-type">int</span> Box::objectCount = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-function">Box <span class="hljs-title">Box1</span><span class="hljs-params">(<span class="hljs-number">3.3</span>, <span class="hljs-number">1.2</span>, <span class="hljs-number">1.5</span>)</span></span>;    <span class="hljs-comment">// Declare box1</span>
+   <span class="hljs-function">Box <span class="hljs-title">Box2</span><span class="hljs-params">(<span class="hljs-number">8.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span>)</span></span>;    <span class="hljs-comment">// Declare box2</span>
+
+   <span class="hljs-comment">// Print total number of objects.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Total objects: &quot;</span> &lt;&lt; Box::objectCount &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>The output is</p>
+<pre><code>Constructor called.
+Constructor called.
+Total objects: 2
+</code></pre>
+<h2 id="static-function-members"><strong>Static Function Members</strong></h2>
+<p>By declaring a function member as static, you make it independent of any particular object of the class. A static member function can be called even if no objects of the class exist and the <strong>static</strong> functions are accessed using only the class name and the scope resolution operator <strong><code>::</code></strong>.</p>
+<p>A static member function can only access static data member, other static member functions and any other functions from outside the class. Static member functions have a class scope and they do not have access to the <strong>this</strong> pointer of the class.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-type">static</span> <span class="hljs-type">int</span> objectCount;
+
+      <span class="hljs-comment">// Constructor definition</span>
+      <span class="hljs-built_in">Box</span>(<span class="hljs-type">double</span> l = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> b = <span class="hljs-number">2.0</span>, <span class="hljs-type">double</span> h = <span class="hljs-number">2.0</span>) {
+         cout &lt;&lt;<span class="hljs-string">&quot;Constructor called.&quot;</span> &lt;&lt; endl;
+         length = l;
+         breadth = b;
+         height = h;
+
+         <span class="hljs-comment">// Increase every time object is created</span>
+         objectCount++;
+      }
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">Volume</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+      <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> objectCount;
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;     <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;    <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;     <span class="hljs-comment">// Height of a box</span>
+};
+
+<span class="hljs-comment">// Initialize static member of class Box</span>
+<span class="hljs-type">int</span> Box::objectCount = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   <span class="hljs-comment">// Print total number of objects before creating object.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Inital Stage Count: &quot;</span> &lt;&lt; Box::<span class="hljs-built_in">getCount</span>() &lt;&lt; endl;
+
+   <span class="hljs-function">Box <span class="hljs-title">Box1</span><span class="hljs-params">(<span class="hljs-number">3.3</span>, <span class="hljs-number">1.2</span>, <span class="hljs-number">1.5</span>)</span></span>;    <span class="hljs-comment">// Declare box1</span>
+   <span class="hljs-function">Box <span class="hljs-title">Box2</span><span class="hljs-params">(<span class="hljs-number">8.5</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">2.0</span>)</span></span>;    <span class="hljs-comment">// Declare box2</span>
+
+   <span class="hljs-comment">// Print total number of objects after creating object.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Final Stage Count: &quot;</span> &lt;&lt; Box::<span class="hljs-built_in">getCount</span>() &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>The output is</p>
+<pre><code>Inital Stage Count: 0
+Constructor called.
+Constructor called.
+Final Stage Count: 2
+</code></pre>
+<h1 id="inheritance">Inheritance</h1>
+<p>The idea of inheritance implements a <strong><code>is a</code></strong> relationship. For example, mammal IS-A animal, dog IS-A mammal hence dog IS-A animal as well and so on.</p>
+<h2 id="base-and-derived-classes">*<strong>*Base and Derived Classes**</strong></h2>
+<p>A class can be derived from more than one classes, which means it can inherit data and functions from multiple base classes. To define a derived class, we use a class derivation list to specify the base class(es). A class derivation list names one or more base classes and has the form −</p>
+<pre><code>class derived-class: access-specifier base-class
+</code></pre>
+<p>Where access-specifier is one of <strong>public, protected,</strong> or <strong>private</strong>, and base-class is the name of a previously defined class. If the access-specifier is not used, then it is private by default.</p>
+<p>Consider a base class <strong>Shape</strong> and its derived class <strong>Rectangle</strong> as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// Base class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">(<span class="hljs-type">int</span> w)</span> </span>{
+         width = w;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHeight</span><span class="hljs-params">(<span class="hljs-type">int</span> h)</span> </span>{
+         height = h;
+      }
+
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-type">int</span> width;
+      <span class="hljs-type">int</span> height;
+};
+
+<span class="hljs-comment">// Derived class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span>: <span class="hljs-keyword">public</span> Shape {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getArea</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> (width * height);
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   Rectangle Rect;
+
+   Rect.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">5</span>);
+   Rect.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">7</span>);
+
+   <span class="hljs-comment">// Print the area of the object.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Total area: &quot;</span> &lt;&lt; Rect.<span class="hljs-built_in">getArea</span>() &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>Total area: 35
+</code></pre>
+<h2 id="access-control-and-inheritance">*<strong>*Access Control and Inheritance**</strong></h2>
+<p>We can summarize the different access types according to - who can access them in the following way −</p>
+<table>
+<thead>
+<tr>
+<th>Access</th>
+<th>public</th>
+<th>protected</th>
+<th>private</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same class</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Derived classes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Outside classes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>A derived class inherits all base class methods with the following exceptions −</p>
+<ul>
+<li>Constructors, destructors and copy constructors of the base class.</li>
+<li>Overloaded operators of the base class.</li>
+<li>The friend functions of the base class.</li>
+</ul>
+<h2 id="type-of-inheritance"><strong>Type of Inheritance</strong></h2>
+<p>When deriving a class from a base class, the base class may be inherited through <strong>public, protected</strong> or <strong>private</strong> inheritance. The type of inheritance is specified by the access-specifier as explained above.</p>
+<ul>
+<li><strong>Public Inheritance</strong> − When deriving a class from a <strong>public</strong> base class, <strong>public</strong> members of the base class become <strong>public</strong> members of the derived class and <strong>protected</strong> members of the base class become <strong>protected</strong> members of the derived class. A base class's <strong>private</strong> members are never accessible directly from a derived class, but can be accessed through calls to the <strong>public</strong> and <strong>protected</strong> members of the base class.</li>
+<li><strong>Protected Inheritance</strong> − When deriving from a <strong>protected</strong> base class, <strong>public</strong> and <strong>protected</strong> members of the base class become <strong>protected</strong> members of the derived class.</li>
+<li><strong>Private Inheritance</strong> − When deriving from a <strong>private</strong> base class, <strong>public</strong> and <strong>protected</strong> members of the base class become <strong>private</strong> members of the derived class.</li>
+</ul>
+<h2 id="multiple-inheritance"><strong>Multiple Inheritance</strong></h2>
+<p>A C++ class can inherit members from more than one class and here is the extended syntax −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">derived</span>-<span class="hljs-keyword">class</span>: access baseA, access baseB...
+</code></pre>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// Base class Shape</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setWidth</span><span class="hljs-params">(<span class="hljs-type">int</span> w)</span> </span>{
+         width = w;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHeight</span><span class="hljs-params">(<span class="hljs-type">int</span> h)</span> </span>{
+         height = h;
+      }
+
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-type">int</span> width;
+      <span class="hljs-type">int</span> height;
+};
+
+<span class="hljs-comment">// Base class PaintCost</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">PaintCost</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getCost</span><span class="hljs-params">(<span class="hljs-type">int</span> area)</span> </span>{
+         <span class="hljs-keyword">return</span> area * <span class="hljs-number">70</span>;
+      }
+};
+
+<span class="hljs-comment">// Derived class</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span>: <span class="hljs-keyword">public</span> Shape, <span class="hljs-keyword">public</span> PaintCost {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getArea</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> (width * height);
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   Rectangle Rect;
+   <span class="hljs-type">int</span> area;
+
+   Rect.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">5</span>);
+   Rect.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">7</span>);
+
+   area = Rect.<span class="hljs-built_in">getArea</span>();
+
+   <span class="hljs-comment">// Print the area of the object.</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Total area: &quot;</span> &lt;&lt; Rect.<span class="hljs-built_in">getArea</span>() &lt;&lt; endl;
+
+   <span class="hljs-comment">// Print the total cost of painting</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Total paint cost: $&quot;</span> &lt;&lt; Rect.<span class="hljs-built_in">getCost</span>(area) &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h1 id="overloading">*<strong>*Overloading**</strong></h1>
+<p>C++ allows you to specify more than one definition for a <strong>function</strong> name or an <strong>operator</strong> in the same scope, which is called <strong>function overloading</strong> and <strong>operator overloading</strong> respectively.</p>
+<p>An overloaded declaration is a declaration that is declared with the same name as a previously declared declaration in the same scope, except that both declarations have different arguments and obviously different definition (implementation).</p>
+<h2 id="function-overloading">*<strong>*Function Overloading**</strong></h2>
+<p>You can have multiple definitions for the same function name in the same scope. The definition of the function must differ from each other by the types and/or the number of arguments in the argument list. You cannot overload function declarations that differ only by return type.</p>
+<p>Following is the example where same function <strong>print()</strong> is being used to print different data types:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">printData</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>{
+        cout &lt;&lt; <span class="hljs-string">&quot;Printing int: &quot;</span> &lt;&lt; i &lt;&lt; endl;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">double</span>  f)</span> </span>{
+        cout &lt;&lt; <span class="hljs-string">&quot;Printing float: &quot;</span> &lt;&lt; f &lt;&lt; endl;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">char</span>* c)</span> </span>{
+        cout &lt;&lt; <span class="hljs-string">&quot;Printing character: &quot;</span> &lt;&lt; c &lt;&lt; endl;
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+   printData pd;
+
+   <span class="hljs-comment">// Call print to print integer</span>
+   pd.<span class="hljs-built_in">print</span>(<span class="hljs-number">5</span>);
+
+   <span class="hljs-comment">// Call print to print float</span>
+   pd.<span class="hljs-built_in">print</span>(<span class="hljs-number">500.263</span>);
+
+   <span class="hljs-comment">// Call print to print character</span>
+   pd.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello C++&quot;</span>);
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="operators-overloading">*<strong>*Operators Overloading**</strong></h2>
+<p>You can redefine or overload most of the built-in operators available in C++. Thus, a programmer can use operators with user-defined types as well.</p>
+<p>Overloaded operators are functions with special names: the keyword &quot;operator&quot; followed by the symbol for the operator being defined. Like any other function, an overloaded operator has a return type and a parameter list.</p>
+<pre><code class="language-cpp">Box <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> Box&amp;);
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">getVolume</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span> </span>{
+         <span class="hljs-keyword">return</span> length * breadth * height;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setLength</span><span class="hljs-params">( <span class="hljs-type">double</span> len )</span> </span>{
+         length = len;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setBreadth</span><span class="hljs-params">( <span class="hljs-type">double</span> bre )</span> </span>{
+         breadth = bre;
+      }
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHeight</span><span class="hljs-params">( <span class="hljs-type">double</span> hei )</span> </span>{
+         height = hei;
+      }
+
+      <span class="hljs-comment">// Overload + operator to add two Box objects.</span>
+      Box <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</span> Box&amp; b) {
+         Box box;
+         box.length = <span class="hljs-keyword">this</span>-&gt;length + b.length;
+         box.breadth = <span class="hljs-keyword">this</span>-&gt;breadth + b.breadth;
+         box.height = <span class="hljs-keyword">this</span>-&gt;height + b.height;
+         <span class="hljs-keyword">return</span> box;
+      }
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;      <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;     <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;      <span class="hljs-comment">// Height of a box</span>
+};
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Box Box1;                <span class="hljs-comment">// Declare Box1 of type Box</span>
+   Box Box2;                <span class="hljs-comment">// Declare Box2 of type Box</span>
+   Box Box3;                <span class="hljs-comment">// Declare Box3 of type Box</span>
+   <span class="hljs-type">double</span> volume = <span class="hljs-number">0.0</span>;     <span class="hljs-comment">// Store the volume of a box here</span>
+
+   <span class="hljs-comment">// box 1 specification</span>
+   Box1.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">6.0</span>);
+   Box1.<span class="hljs-built_in">setBreadth</span>(<span class="hljs-number">7.0</span>);
+   Box1.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">5.0</span>);
+
+   <span class="hljs-comment">// box 2 specification</span>
+   Box2.<span class="hljs-built_in">setLength</span>(<span class="hljs-number">12.0</span>);
+   Box2.<span class="hljs-built_in">setBreadth</span>(<span class="hljs-number">13.0</span>);
+   Box2.<span class="hljs-built_in">setHeight</span>(<span class="hljs-number">10.0</span>);
+
+   <span class="hljs-comment">// volume of box 1</span>
+   volume = Box1.<span class="hljs-built_in">getVolume</span>();
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box1 : &quot;</span> &lt;&lt; volume &lt;&lt;endl;
+
+   <span class="hljs-comment">// volume of box 2</span>
+   volume = Box2.<span class="hljs-built_in">getVolume</span>();
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box2 : &quot;</span> &lt;&lt; volume &lt;&lt;endl;
+
+   <span class="hljs-comment">// Add two object as follows:</span>
+   Box3 = Box1 + Box2;
+
+   <span class="hljs-comment">// volume of box 3</span>
+   volume = Box3.<span class="hljs-built_in">getVolume</span>();
+   cout &lt;&lt; <span class="hljs-string">&quot;Volume of Box3 : &quot;</span> &lt;&lt; volume &lt;&lt;endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="overloadablenon-overloadable-operators">*<strong>*Overloadable/Non-overloadable Operators**</strong></h3>
+<p>Following is the list of operators which can be overloaded −</p>
+<p>| +   | -    | *  | /      | %      | ^         |
+| --- | ---- | --- | ------ | ------ | --------- | --- | --- |
+| &amp;   |      |     | ~      | !      | ,         | =   |
+| &lt;   | &gt;    | &lt;=  | &gt;=     | ++     | --        |
+| &lt;&lt;  | &gt;&gt;   | ==  | !=     | &amp;&amp;     |           |     |     |
+| +=  | -=   | /=  | %=     | ^=     | &amp;=        |
+|     | =    | *= | &lt;&lt;=    | &gt;&gt;=    | []        | ()  |
+| -&gt;  | -&gt;* | new | new [] | delete | delete [] |</p>
+<p>Following is the list of operators, which can not be overloaded −</p>
+<table>
+<thead>
+<tr>
+<th>::</th>
+<th>.*</th>
+<th>.</th>
+<th>?:</th>
+</tr>
+</thead>
+</table>
+<p>Here are some more examples:</p>
+<h3 id="negation">Negation</h3>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Distance</span> {
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">int</span> feet;             <span class="hljs-comment">// 0 to infinite</span>
+      <span class="hljs-type">int</span> inches;           <span class="hljs-comment">// 0 to 12</span>
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// required constructors</span>
+      <span class="hljs-built_in">Distance</span>() {
+         feet = <span class="hljs-number">0</span>;
+         inches = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-built_in">Distance</span>(<span class="hljs-type">int</span> f, <span class="hljs-type">int</span> i) {
+         feet = f;
+         inches = i;
+      }
+
+      <span class="hljs-comment">// method to display distance</span>
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayDistance</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;F: &quot;</span> &lt;&lt; feet &lt;&lt; <span class="hljs-string">&quot; I:&quot;</span> &lt;&lt; inches &lt;&lt;endl;
+      }
+
+      <span class="hljs-comment">// overloaded minus (-) operator</span>
+      Distance <span class="hljs-keyword">operator</span>- () {
+         feet = -feet;
+         inches = -inches;
+         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Distance</span>(feet, inches);
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-function">Distance <span class="hljs-title">D1</span><span class="hljs-params">(<span class="hljs-number">11</span>, <span class="hljs-number">10</span>)</span>, <span class="hljs-title">D2</span><span class="hljs-params">(<span class="hljs-number">-5</span>, <span class="hljs-number">11</span>)</span></span>;
+
+   -D1;                     <span class="hljs-comment">// apply negation</span>
+   D1.<span class="hljs-built_in">displayDistance</span>();    <span class="hljs-comment">// display D1</span>
+
+   -D2;                     <span class="hljs-comment">// apply negation</span>
+   D2.<span class="hljs-built_in">displayDistance</span>();    <span class="hljs-comment">// display D2</span>
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h3 id="increment---decrement---">*<strong>*Increment <code>++</code> &amp; Decrement <code>--</code></strong></h3>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Time</span> {
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">int</span> hours;             <span class="hljs-comment">// 0 to 23</span>
+      <span class="hljs-type">int</span> minutes;           <span class="hljs-comment">// 0 to 59</span>
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// required constructors</span>
+      <span class="hljs-built_in">Time</span>() {
+         hours = <span class="hljs-number">0</span>;
+         minutes = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-built_in">Time</span>(<span class="hljs-type">int</span> h, <span class="hljs-type">int</span> m) {
+         hours = h;
+         minutes = m;
+      }
+
+      <span class="hljs-comment">// method to display time</span>
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayTime</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;H: &quot;</span> &lt;&lt; hours &lt;&lt; <span class="hljs-string">&quot; M:&quot;</span> &lt;&lt; minutes &lt;&lt;endl;
+      }
+
+      <span class="hljs-comment">// overloaded prefix ++ operator</span>
+      Time <span class="hljs-keyword">operator</span>++ () {
+         ++minutes;          <span class="hljs-comment">// increment this object</span>
+         <span class="hljs-keyword">if</span>(minutes &gt;= <span class="hljs-number">60</span>) {
+            ++hours;
+            minutes -= <span class="hljs-number">60</span>;
+         }
+         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Time</span>(hours, minutes);
+      }
+
+      <span class="hljs-comment">// overloaded postfix ++ operator</span>
+      Time <span class="hljs-keyword">operator</span>++( <span class="hljs-type">int</span> ) {
+
+         <span class="hljs-comment">// save the orignal value</span>
+         <span class="hljs-function">Time <span class="hljs-title">T</span><span class="hljs-params">(hours, minutes)</span></span>;
+
+         <span class="hljs-comment">// increment this object</span>
+         ++minutes;
+
+         <span class="hljs-keyword">if</span>(minutes &gt;= <span class="hljs-number">60</span>) {
+            ++hours;
+            minutes -= <span class="hljs-number">60</span>;
+         }
+
+         <span class="hljs-comment">// return old original value</span>
+         <span class="hljs-keyword">return</span> T;
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-function">Time <span class="hljs-title">T1</span><span class="hljs-params">(<span class="hljs-number">11</span>, <span class="hljs-number">59</span>)</span>, <span class="hljs-title">T2</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">40</span>)</span></span>;
+
+   ++T1;                    <span class="hljs-comment">// increment T1</span>
+   T1.<span class="hljs-built_in">displayTime</span>();        <span class="hljs-comment">// display T1</span>
+   ++T1;                    <span class="hljs-comment">// increment T1 again</span>
+   T1.<span class="hljs-built_in">displayTime</span>();        <span class="hljs-comment">// display T1</span>
+
+   T2++;                    <span class="hljs-comment">// increment T2</span>
+   T2.<span class="hljs-built_in">displayTime</span>();        <span class="hljs-comment">// display T2</span>
+   T2++;                    <span class="hljs-comment">// increment T2 again</span>
+   T2.<span class="hljs-built_in">displayTime</span>();        <span class="hljs-comment">// display T2</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>The output will be</p>
+<pre><code>H: 12 M:0
+H: 12 M:1
+H: 10 M:41
+H: 10 M:42
+</code></pre>
+<h3 id="relational-operators">*<strong>*Relational Operators**</strong></h3>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Distance</span> {
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">int</span> feet;             <span class="hljs-comment">// 0 to infinite</span>
+      <span class="hljs-type">int</span> inches;           <span class="hljs-comment">// 0 to 12</span>
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// required constructors</span>
+      <span class="hljs-built_in">Distance</span>() {
+         feet = <span class="hljs-number">0</span>;
+         inches = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-built_in">Distance</span>(<span class="hljs-type">int</span> f, <span class="hljs-type">int</span> i) {
+         feet = f;
+         inches = i;
+      }
+
+      <span class="hljs-comment">// method to display distance</span>
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayDistance</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;F: &quot;</span> &lt;&lt; feet &lt;&lt; <span class="hljs-string">&quot; I:&quot;</span> &lt;&lt; inches &lt;&lt;endl;
+      }
+
+      <span class="hljs-comment">// overloaded minus (-) operator</span>
+      Distance <span class="hljs-keyword">operator</span>- () {
+         feet = -feet;
+         inches = -inches;
+         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Distance</span>(feet, inches);
+      }
+
+      <span class="hljs-comment">// overloaded &lt; operator</span>
+      <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span> &lt;(<span class="hljs-type">const</span> Distance&amp; d) {
+         <span class="hljs-keyword">if</span>(feet &lt; d.feet) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+         }
+         <span class="hljs-keyword">if</span>(feet == d.feet &amp;&amp; inches &lt; d.inches) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+         }
+
+         <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-function">Distance <span class="hljs-title">D1</span><span class="hljs-params">(<span class="hljs-number">11</span>, <span class="hljs-number">10</span>)</span>, <span class="hljs-title">D2</span><span class="hljs-params">(<span class="hljs-number">5</span>, <span class="hljs-number">11</span>)</span></span>;
+
+   <span class="hljs-keyword">if</span>( D1 &lt; D2 ) {
+      cout &lt;&lt; <span class="hljs-string">&quot;D1 is less than D2 &quot;</span> &lt;&lt; endl;
+   } <span class="hljs-keyword">else</span> {
+      cout &lt;&lt; <span class="hljs-string">&quot;D2 is less than D1 &quot;</span> &lt;&lt; endl;
+   }
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Here is the output:</p>
+<p><code>D2 is less than D1</code></p>
+<h3 id="function-call-operator-">*<strong>*Function Call Operator <code>()</code></strong></h3>
+<p>The function call operator <code>()</code> can be overloaded for objects of class type. When you overload <code>()</code>, you are not creating a new way to call a function. Rather, you are creating an operator function that can be passed an arbitrary number of parameters.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Distance</span> {
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">int</span> feet;             <span class="hljs-comment">// 0 to infinite</span>
+      <span class="hljs-type">int</span> inches;           <span class="hljs-comment">// 0 to 12</span>
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// required constructors</span>
+      <span class="hljs-built_in">Distance</span>() {
+         feet = <span class="hljs-number">0</span>;
+         inches = <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-built_in">Distance</span>(<span class="hljs-type">int</span> f, <span class="hljs-type">int</span> i) {
+         feet = f;
+         inches = i;
+      }
+
+      <span class="hljs-comment">// overload function call</span>
+      <span class="hljs-function">Distance <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c)</span> </span>{
+         Distance D;
+
+         <span class="hljs-comment">// just put random calculation</span>
+         D.feet = a + c + <span class="hljs-number">10</span>;
+         D.inches = b + c + <span class="hljs-number">100</span> ;
+         <span class="hljs-keyword">return</span> D;
+      }
+
+      <span class="hljs-comment">// method to display distance</span>
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">displayDistance</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;F: &quot;</span> &lt;&lt; feet &lt;&lt; <span class="hljs-string">&quot; I:&quot;</span> &lt;&lt; inches &lt;&lt; endl;
+      }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-function">Distance <span class="hljs-title">D1</span><span class="hljs-params">(<span class="hljs-number">11</span>, <span class="hljs-number">10</span>)</span>, D2</span>;
+
+   cout &lt;&lt; <span class="hljs-string">&quot;First Distance : &quot;</span>;
+   D1.<span class="hljs-built_in">displayDistance</span>();
+
+   D2 = <span class="hljs-built_in">D1</span>(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>); <span class="hljs-comment">// invoke operator()</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Second Distance :&quot;</span>;
+   D2.<span class="hljs-built_in">displayDistance</span>();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<pre><code>First Distance : F: 11 I:10
+Second Distance :F: 30 I:120
+</code></pre>
+<h1 id="polymorphism">*<strong>*Polymorphism**</strong></h1>
+<p>C++ polymorphism means that a call to a member function will cause a different function to be executed depending on the type of object that invokes the function. Here is a simple example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-type">int</span> width, height;
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-built_in">Shape</span>( <span class="hljs-type">int</span> a = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">0</span>){
+         width = a;
+         height = b;
+      }
+      <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;Parent class area :&quot;</span> &lt;&lt; width * height &lt;&lt; endl;
+         <span class="hljs-keyword">return</span> width * height;
+      }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rectangle</span>: <span class="hljs-keyword">public</span> Shape {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-built_in">Rectangle</span>( <span class="hljs-type">int</span> a = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">0</span>):<span class="hljs-built_in">Shape</span>(a, b) { }
+
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span> <span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;Rectangle class area :&quot;</span> &lt;&lt; width * height &lt;&lt; endl;
+         <span class="hljs-keyword">return</span> (width * height);
+      }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Triangle</span>: <span class="hljs-keyword">public</span> Shape {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-built_in">Triangle</span>( <span class="hljs-type">int</span> a = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">0</span>):<span class="hljs-built_in">Shape</span>(a, b) { }
+
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span> <span class="hljs-params">()</span> </span>{
+         cout &lt;&lt; <span class="hljs-string">&quot;Triangle class area :&quot;</span> &lt;&lt; (width * height)/<span class="hljs-number">2</span> &lt;&lt; endl;
+         <span class="hljs-keyword">return</span> (width * height / <span class="hljs-number">2</span>);
+      }
+};
+
+<span class="hljs-comment">// Main function for the program</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Shape *shape;
+   <span class="hljs-function">Rectangle <span class="hljs-title">rec</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">7</span>)</span></span>;
+   <span class="hljs-function">Triangle  <span class="hljs-title">tri</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>)</span></span>;
+
+   <span class="hljs-comment">// store the address of Rectangle</span>
+   shape = &amp;rec;
+
+   <span class="hljs-comment">// call rectangle area.</span>
+   shape-&gt;<span class="hljs-built_in">area</span>();
+
+   <span class="hljs-comment">// store the address of Triangle</span>
+   shape = &amp;tri;
+
+   <span class="hljs-comment">// call triangle area.</span>
+   shape-&gt;<span class="hljs-built_in">area</span>();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Note the use of <code>virtual</code> keyword in the base class definition.</p>
+<h2 id="virtual-function">*<strong>*Virtual Function**</strong></h2>
+<p>A <strong>virtual</strong> function is a function in a base class that is declared using the keyword <strong><code>virtual</code></strong>. Defining in a base class a virtual function, with another version in a derived class, signals to the compiler that we don't want <em>static linkage</em> for this function.</p>
+<p>What we do want is the selection of the function to be called at any given point in the program to be based on the kind of object for which it is called. This sort of operation is referred to as <strong><em>dynamic linkage</em></strong>, or <strong><em>late binding</em></strong>.</p>
+<h2 id="pure-virtual-functions">*<strong>*Pure Virtual Functions**</strong></h2>
+<p>It is possible that you want to include a virtual function in a base class so that it may be redefined in a derived class to suit the objects of that class, but that there is no meaningful definition you could give for the function in the base class. For this, rewrite the virtual function as:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+   <span class="hljs-keyword">protected</span>:
+      <span class="hljs-type">int</span> width, height;
+
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-built_in">Shape</span>(<span class="hljs-type">int</span> a = <span class="hljs-number">0</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">0</span>) {
+         width = a;
+         height = b;
+      }
+
+      <span class="hljs-comment">// pure virtual function</span>
+      <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+</code></pre>
+<p>The <code>= 0</code> tells the compiler that the function has no body and above virtual function will be called <strong>pure virtual function.</strong></p>
+<h1 id="abstraction">*<strong>*Abstraction**</strong></h1>
+<p>Data abstraction refers to providing only essential information to the outside world and hiding their background details, i.e., to represent the needed information in program without presenting the details.</p>
+<p>In C++, we use <strong>classes</strong> to define our own abstract data types (ADT). For example, you can use the <strong><code>cout</code></strong> object of class <strong><code>ostream</code></strong> to stream data to standard output like this:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   cout &lt;&lt; <span class="hljs-string">&quot;Hello C++&quot;</span> &lt;&lt;endl;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Here, you don't need to understand how <strong><code>cout</code></strong> displays the text on the user's screen. You need to only know the public interface and the underlying implementation of <code>cout</code> is free to change. Here is another simple example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Adder</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// constructor</span>
+      <span class="hljs-built_in">Adder</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>) {
+         total = i;
+      }
+
+      <span class="hljs-comment">// interface to outside world</span>
+      <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addNum</span><span class="hljs-params">(<span class="hljs-type">int</span> number)</span> </span>{
+         total += number;
+      }
+
+      <span class="hljs-comment">// interface to outside world</span>
+      <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getTotal</span><span class="hljs-params">()</span> </span>{
+         <span class="hljs-keyword">return</span> total;
+      };
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-comment">// hidden data from outside world</span>
+      <span class="hljs-type">int</span> total;
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   Adder a;
+
+   a.<span class="hljs-built_in">addNum</span>(<span class="hljs-number">10</span>);
+   a.<span class="hljs-built_in">addNum</span>(<span class="hljs-number">20</span>);
+   a.<span class="hljs-built_in">addNum</span>(<span class="hljs-number">30</span>);
+
+   cout &lt;&lt; <span class="hljs-string">&quot;Total &quot;</span> &lt;&lt; a.<span class="hljs-built_in">getTotal</span>() &lt;&lt;endl;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>Above class adds numbers together, and returns the sum. The public members - <strong><code>addNum</code></strong> and <strong><code>getTotal</code></strong> are the interfaces to the outside world and a user needs to know them to use the class. The private member <strong><code>total</code></strong> is something that the user doesn't need to know about, but is needed for the class to operate properly.</p>
+<h1 id="encapsulation">*<strong>*Encapsulation**</strong></h1>
+<p>All C++ programs are composed of the following two fundamental elements −</p>
+<ul>
+<li><strong>Program statements (code)</strong> − This is the part of a program that performs actions and they are called functions.</li>
+<li><strong>Program data</strong> − The data is the information of the program which gets affected by the program functions.</li>
+</ul>
+<p>Encapsulation is an Object Oriented Programming concept that binds together the data and functions that manipulate the data, and that keeps both safe from outside interference and misuse. Data encapsulation led to the important OOP concept of <strong>data hiding</strong>.</p>
+<blockquote>
+<p><strong>Data encapsulation</strong> is a mechanism of bundling the data, and the functions that use them and <strong>data abstraction</strong> is a mechanism of exposing only the interfaces and hiding the implementation details from the user.</p>
+</blockquote>
+<p>The <a href="OOPs%201491b8e4519b4c64987fb25b48e0653e.html">same example</a> can be used to explain this.</p>
+<h1 id="interfaces-abstract-classes">*<strong>*Interfaces (Abstract Classes)**</strong></h1>
+<p>An interface describes the behavior or capabilities of a C++ class without committing to a particular implementation of that class.</p>
+<p>The C++ interfaces are implemented using <strong>abstract classes</strong> and these abstract classes should not be confused with data abstraction which is a concept of keeping implementation details separate from associated data.</p>
+<p>A class is made abstract by declaring at least one of its functions as <strong>pure virtual</strong> function. A pure virtual function is specified by placing &quot;= 0&quot; in its declaration as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Box</span> {
+   <span class="hljs-keyword">public</span>:
+      <span class="hljs-comment">// pure virtual function</span>
+      <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">double</span> <span class="hljs-title">getVolume</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-type">double</span> length;      <span class="hljs-comment">// Length of a box</span>
+      <span class="hljs-type">double</span> breadth;     <span class="hljs-comment">// Breadth of a box</span>
+      <span class="hljs-type">double</span> height;      <span class="hljs-comment">// Height of a box</span>
+};
+
+</code></pre>
+<p>The purpose of an <strong>abstract class</strong> (often referred to as an ABC) is to provide an appropriate base class from which other classes can inherit. Abstract classes cannot be used to instantiate objects and serves only as an <strong>interface</strong>. Attempting to instantiate an object of an abstract class causes a compilation error.</p>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>

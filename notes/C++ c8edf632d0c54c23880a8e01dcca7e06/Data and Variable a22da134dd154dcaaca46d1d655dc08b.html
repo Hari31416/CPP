@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Data and Variable</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="data-and-variable">Data and Variable</h1>
+<ul>
+<li><a href="#data-and-variable">Data and Variable</a></li>
+<li><a href="#data-types-in-c">Data Types in C++</a>
+<ul>
+<li><a href="#basic-data-types">Basic Data Types</a></li>
+<li><a href="#derived-data-types">Derived Data Types</a></li>
+<li><a href="#user-defined-data-types">User-Defined Data Types</a></li>
+</ul>
+</li>
+<li><a href="#c-variable-types">*<strong>*C++ Variable Types**</strong></a>
+<ul>
+<li><a href="#variable-definition-in-c">*<strong>*Variable Definition in C++**</strong></a></li>
+<li><a href="#variable-declaration-in-c">*<strong>*Variable Declaration in C++**</strong></a></li>
+<li><a href="#lvalues-and-rvalues"><strong>Lvalues and Rvalues</strong></a></li>
+</ul>
+</li>
+<li><a href="#variable-scope">*<strong>*Variable Scope**</strong></a>
+<ul>
+<li><a href="#variable-scope-1">Variable Scope</a></li>
+<li><a href="#local-variables">*<strong>*Local Variables**</strong></a></li>
+<li><a href="#global-variables">*<strong>*Global Variables**</strong></a></li>
+</ul>
+</li>
+<li><a href="#constantsliterals">*<strong>*Constants/Literals**</strong></a>
+<ul>
+<li><a href="#integer-literals">*<strong>*Integer Literals**</strong></a></li>
+<li><a href="#floating-point-literals"><strong>Floating-point Literals</strong></a></li>
+<li><a href="#string-literals"><strong>String Literals</strong></a></li>
+<li><a href="#defining-constants">*<strong>*Defining Constants**</strong></a>
+<ul>
+<li><a href="#the-define-preprocessor">*<strong>*The #define Preprocessor**</strong></a></li>
+</ul>
+</li>
+<li><a href="#the-const-keyword"><strong>The const Keyword</strong></a></li>
+</ul>
+</li>
+<li><a href="#modifier-types">*<strong>*Modifier Types**</strong></a></li>
+</ul>
+<h1 id="data-types-in-c">Data Types in C++</h1>
+<p>In C++, data types are used to define the type of data that a variable can hold. The type of data determines the size of the variable and the operations that can be performed on it. C++ supports various data types that can be broadly classified as:</p>
+<h2 id="basic-data-types">Basic Data Types</h2>
+<p>C++ has the following basic data types:</p>
+<ul>
+<li><strong>int</strong>: used to store integer values.</li>
+<li><strong>float</strong>: used to store floating-point numbers.</li>
+<li><strong>double</strong>: used to store double-precision floating-point numbers.</li>
+<li><strong>char</strong>: used to store single character values.</li>
+<li><strong>bool</strong>: used to store either true or false.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Keyword</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean</td>
+<td>bool</td>
+</tr>
+<tr>
+<td>Character</td>
+<td>char</td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>int</td>
+</tr>
+<tr>
+<td>Floating point</td>
+<td>float</td>
+</tr>
+<tr>
+<td>Double floating point</td>
+<td>double</td>
+</tr>
+<tr>
+<td>Valueless</td>
+<td>void</td>
+</tr>
+<tr>
+<td>Wide character</td>
+<td>wchar_t</td>
+</tr>
+</tbody>
+</table>
+<p>The following table shows the variable type, how much memory it takes to store the value in memory, and what is maximum and minimum value which can be stored in such type of variables.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Typical Bit Width</th>
+<th>Typical Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1byte</td>
+<td>-127 to 127 or 0 to 255</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>1byte</td>
+<td>0 to 255</td>
+</tr>
+<tr>
+<td>signed char</td>
+<td>1byte</td>
+<td>-127 to 127</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4bytes</td>
+<td>-2147483648 to 2147483647</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>4bytes</td>
+<td>0 to 4294967295</td>
+</tr>
+<tr>
+<td>signed int</td>
+<td>4bytes</td>
+<td>-2147483648 to 2147483647</td>
+</tr>
+<tr>
+<td>short int</td>
+<td>2bytes</td>
+<td>-32768 to 32767</td>
+</tr>
+<tr>
+<td>unsigned short int</td>
+<td>2bytes</td>
+<td>0 to 65,535</td>
+</tr>
+<tr>
+<td>signed short int</td>
+<td>2bytes</td>
+<td>-32768 to 32767</td>
+</tr>
+<tr>
+<td>long int</td>
+<td>8bytes</td>
+<td>-9223372036854775808 to 9223372036854775807</td>
+</tr>
+<tr>
+<td>signed long int</td>
+<td>8bytes</td>
+<td>same as long int</td>
+</tr>
+<tr>
+<td>unsigned long int</td>
+<td>8bytes</td>
+<td>0 to 18446744073709551615</td>
+</tr>
+<tr>
+<td>long long int</td>
+<td>8bytes</td>
+<td>-(2^63) to (2^63)-1</td>
+</tr>
+<tr>
+<td>unsigned long long int</td>
+<td>8bytes</td>
+<td>0 to 18,446,744,073,709,551,615</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4bytes</td>
+<td></td>
+</tr>
+<tr>
+<td>double</td>
+<td>8bytes</td>
+<td></td>
+</tr>
+<tr>
+<td>long double</td>
+<td>12bytes</td>
+<td></td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>2 or 4 bytes</td>
+<td>1 wide character</td>
+</tr>
+</tbody>
+</table>
+<p>The size of variables might be different from those shown in the above table, depending on the compiler and the computer you are using.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of char : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">char</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of int : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of short int : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">short</span> <span class="hljs-type">int</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of long int : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">long</span> <span class="hljs-type">int</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of float : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">float</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of double : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">double</span>) &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Size of wchar_t : &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">wchar_t</span>) &lt;&lt; endl;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>This example uses <strong><code>endl</code></strong>, which inserts a new-line character after every line and <code>&lt;&lt;</code> operator is being used to pass multiple values out to the screen. We are also using <strong><code>sizeof()</code></strong> operator to get the size of various data types.</p>
+<h2 id="derived-data-types">Derived Data Types</h2>
+<p>C++ has the following derived data types:</p>
+<ul>
+<li><strong>arrays</strong>: used to store a collection of values of the same data type.</li>
+<li><strong>pointers</strong>: used to store the memory addresses of variables.</li>
+<li><strong>structures</strong>: used to store a collection of variables of different data types.</li>
+<li><strong>classes</strong>: used to store a collection of variables and functions that operate on those variables.</li>
+</ul>
+<h2 id="user-defined-data-types">User-Defined Data Types</h2>
+<p>C++ allows users to define their own data types using the <strong>typedef</strong> keyword. This allows users to create new data types with meaningful names that can be easily understood by other programmers.</p>
+<p>For example, the following tells the compiler that feet is another name for int −</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-type">int</span> feet;
+</code></pre>
+<p>Now, the following declaration is perfectly legal and creates an integer variable called distance −</p>
+<pre><code class="language-cpp">feet distance;
+</code></pre>
+<h1 id="c-variable-types">*<strong>*C++ Variable Types**</strong></h1>
+<p>A variable provides us with named storage that our programs can manipulate. Each variable in C++ has a specific type, which determines the size and layout of the variable's memory; the range of values that can be stored within that memory; and the set of operations that can be applied to the variable.</p>
+<p>The name of a variable can be composed of letters, digits, and the underscore character. It must begin with either a letter or an underscore. Upper and lowercase letters are distinct because C++ is case-sensitive. The variable types are the same as defined <a href="Data%20and%20Variable%20a22da134dd154dcaaca46d1d655dc08b.html">above</a>.</p>
+<h2 id="variable-definition-in-c">*<strong>*Variable Definition in C++**</strong></h2>
+<p>The syntax is:</p>
+<p><code>type variable_list;</code></p>
+<p>For example:</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span>    i, j, k;
+<span class="hljs-type">char</span>   c, ch;
+<span class="hljs-type">float</span>  f, salary;
+<span class="hljs-type">double</span> d;
+</code></pre>
+<p>Variables can be initialized (assigned an initial value) in their declaration. The initializer consists of an equal sign followed by a constant expression as follows:</p>
+<pre><code class="language-cpp"><span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> d = <span class="hljs-number">3</span>, f = <span class="hljs-number">5</span>;    <span class="hljs-comment">// declaration of d and f.</span>
+<span class="hljs-type">int</span> d = <span class="hljs-number">3</span>, f = <span class="hljs-number">5</span>;           <span class="hljs-comment">// definition and initializing d and f.</span>
+byte z = <span class="hljs-number">22</span>;                <span class="hljs-comment">// definition and initializes z.</span>
+<span class="hljs-type">char</span> x = <span class="hljs-string">&#x27;x&#x27;</span>;               <span class="hljs-comment">// the variable x has the value &#x27;x&#x27;.</span>
+</code></pre>
+<h2 id="variable-declaration-in-c">*<strong>*Variable Declaration in C++**</strong></h2>
+<p>A variable declaration provides assurance to the compiler that there is one variable existing with the given type and name so that compiler proceed for further compilation without needing complete detail about the variable.</p>
+<p>A variable declaration is useful when you are using multiple files and you define your variable in one of the files which will be available at the time of linking of the program. You will use <strong><code>extern</code></strong> keyword to declare a variable at any place. Though you can declare a variable multiple times in your C++ program, but it can be defined only once in a file, a function or a block of code.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// Variable declaration:</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> a, b;
+<span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> c;
+<span class="hljs-keyword">extern</span> <span class="hljs-type">float</span> f;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Variable definition:</span>
+   <span class="hljs-type">int</span> a, b;
+   <span class="hljs-type">int</span> c;
+   <span class="hljs-type">float</span> f;
+
+   <span class="hljs-comment">// actual initialization</span>
+   a = <span class="hljs-number">10</span>;
+   b = <span class="hljs-number">20</span>;
+   c = a + b;
+
+   cout &lt;&lt; c &lt;&lt; endl ;
+
+   f = <span class="hljs-number">70.0</span>/<span class="hljs-number">3.0</span>;
+   cout &lt;&lt; f &lt;&lt; endl ;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>30
+23.3333
+</code></pre>
+<h2 id="lvalues-and-rvalues"><strong>Lvalues and Rvalues</strong></h2>
+<p>There are two kinds of expressions in C++ −</p>
+<ul>
+<li><strong>lvalue</strong> − Expressions that refer to a memory location is called &quot;lvalue&quot; expression. An lvalue may appear as either the left-hand or right-hand side of an assignment.</li>
+<li><strong>rvalue</strong> − The term rvalue refers to a data value that is stored at some address in memory. An rvalue is an expression that cannot have a value assigned to it which means an rvalue may appear on the right- but not left-hand side of an assignment.</li>
+</ul>
+<p>Variables are lvalues and so may appear on the left-hand side of an assignment. Numeric literals are rvalues and so may not be assigned and can not appear on the left-hand side. Following is a valid statement −</p>
+<pre><code class="language-cpp"><span class="hljs-type">int</span> g = <span class="hljs-number">20</span>;
+</code></pre>
+<p>But the following is not a valid statement and would generate a compile-time error −</p>
+<pre><code class="language-cpp"><span class="hljs-number">10</span> = <span class="hljs-number">20</span>;
+</code></pre>
+<h1 id="variable-scope">*<strong>*Variable Scope**</strong></h1>
+<h2 id="variable-scope-1">Variable Scope</h2>
+<p>The scope of a variable refers to where in the program the variable can be accessed. In C++, there are three types of variable scope:</p>
+<ul>
+<li>Global scope: Variables declared outside of any function are considered to have global scope. This means that they can be accessed from anywhere within the program.</li>
+<li>Local scope: Variables declared within a function have local scope. This means that they can only be accessed within the function in which they are declared.</li>
+<li>Block scope: Variables declared within a block of code, such as within a loop or if statement, have block scope. This means that they can only be accessed within that block of code.</li>
+</ul>
+<h2 id="local-variables">*<strong>*Local Variables**</strong></h2>
+<p>Variables that are declared inside a function or block are local variables. They can be used only by statements that are inside that function or block of code.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Local variable declaration:</span>
+   <span class="hljs-type">int</span> a, b;
+   <span class="hljs-type">int</span> c;
+
+   <span class="hljs-comment">// actual initialization</span>
+   a = <span class="hljs-number">10</span>;
+   b = <span class="hljs-number">20</span>;
+   c = a + b;
+
+   cout &lt;&lt; c;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="global-variables">*<strong>*Global Variables**</strong></h2>
+<p>Global variables are defined outside of all the functions, usually on top of the program. The global variables will hold their value throughout the lifetime of your program.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">// Global variable declaration:</span>
+<span class="hljs-type">int</span> g;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>{
+   <span class="hljs-comment">// Local variable declaration:</span>
+   <span class="hljs-type">int</span> a, b;
+
+   <span class="hljs-comment">// actual initialization</span>
+   a = <span class="hljs-number">10</span>;
+   b = <span class="hljs-number">20</span>;
+   g = a + b;
+
+   cout &lt;&lt; g;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When a variable is declared with the same name in multiple scopes, the variable in the innermost scope takes precedence. This is known as variable hiding.</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>; <span class="hljs-comment">// global variable</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span> x = <span class="hljs-number">5</span>; <span class="hljs-comment">// local variable</span>
+   cout &lt;&lt; <span class="hljs-string">&quot;Local variable x: &quot;</span> &lt;&lt; x &lt;&lt; endl;
+   cout &lt;&lt; <span class="hljs-string">&quot;Global variable x: &quot;</span> &lt;&lt; ::x &lt;&lt; endl; <span class="hljs-comment">// using the scope resolution operator to access the global variable</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</code></pre>
+<p>In the above example, the local variable x takes precedence over the global variable x within the main function. The scope resolution operator (::) is used to access the global variable x.</p>
+<h1 id="constantsliterals">*<strong>*Constants/Literals**</strong></h1>
+<p>Constants refer to fixed values that the program may not alter and they are called <strong>literals</strong>.</p>
+<p>Constants can be of any of the basic data types and can be divided into Integer Numerals, Floating-Point Numerals, Characters, Strings, and Boolean Values.</p>
+<p>Constants are treated just like regular variables except that their values cannot be modified after their definition.</p>
+<h2 id="integer-literals">*<strong>*Integer Literals**</strong></h2>
+<p>Here are some examples of integer literals −</p>
+<pre><code class="language-cpp"><span class="hljs-number">212</span>         <span class="hljs-comment">// Legal</span>
+<span class="hljs-number">215u</span>        <span class="hljs-comment">// Legal</span>
+<span class="hljs-number">0xFee</span>L      <span class="hljs-comment">// Legal</span>
+<span class="hljs-number">078</span>         <span class="hljs-comment">// Illegal: 8 is not an octal digit</span>
+<span class="hljs-number">032U</span>U       <span class="hljs-comment">// Illegal: cannot repeat a suffix</span>
+
+</code></pre>
+<p>Following are other examples of various types of Integer literals −</p>
+<pre><code class="language-cpp"><span class="hljs-number">85</span>         <span class="hljs-comment">// decimal</span>
+<span class="hljs-number">0213</span>       <span class="hljs-comment">// octal</span>
+<span class="hljs-number">0x4b</span>       <span class="hljs-comment">// hexadecimal</span>
+<span class="hljs-number">30</span>         <span class="hljs-comment">// int</span>
+<span class="hljs-number">30u</span>        <span class="hljs-comment">// unsigned int</span>
+<span class="hljs-number">30l</span>        <span class="hljs-comment">// long</span>
+<span class="hljs-number">30ul</span>       <span class="hljs-comment">// unsigned long</span>
+</code></pre>
+<h2 id="floating-point-literals"><strong>Floating-point Literals</strong></h2>
+<p>A floating-point literal has an integer part, a decimal point, a fractional part, and an exponent part. You can represent floating point literals either in decimal form or exponential form.</p>
+<p>Here are some examples of floating-point literals −</p>
+<pre><code class="language-cpp"><span class="hljs-number">3.14159</span>       <span class="hljs-comment">// Legal</span>
+<span class="hljs-number">314159E-5</span>L    <span class="hljs-comment">// Legal</span>
+<span class="hljs-number">510</span>E          <span class="hljs-comment">// Illegal: incomplete exponent</span>
+<span class="hljs-number">210f</span>          <span class="hljs-comment">// Illegal: no decimal or exponent</span>
+.e55          <span class="hljs-comment">// Illegal: missing integer or fract</span>
+</code></pre>
+<h2 id="string-literals"><strong>String Literals</strong></h2>
+<p>String literals are enclosed in double quotes. A string contains characters that are similar to character literals: plain characters, escape sequences, and universal characters.</p>
+<p>You can break a long line into multiple lines using string literals and separate them using whitespaces.</p>
+<p>Here are some examples of string literals. All the three forms are identical strings.</p>
+<pre><code class="language-cpp"><span class="hljs-string">&quot;hello, dear&quot;</span>
+
+<span class="hljs-string">&quot;hello, \
+
+dear&quot;</span>
+
+<span class="hljs-string">&quot;hello, &quot;</span> <span class="hljs-string">&quot;d&quot;</span> <span class="hljs-string">&quot;ear&quot;</span>
+</code></pre>
+<h2 id="defining-constants">*<strong>*Defining Constants**</strong></h2>
+<h3 id="the-define-preprocessor">*<strong>*The #define Preprocessor**</strong></h3>
+<p>Following is the form to use #define preprocessor to define a constant −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> identifier value</span>
+</code></pre>
+<p>Here is an example:</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> LENGTH 10</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> WIDTH  5</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> NEWLINE <span class="hljs-string">&#x27;\n&#x27;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">int</span> area;
+
+   area = LENGTH * WIDTH;
+   cout &lt;&lt; area;
+   cout &lt;&lt; NEWLINE;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="the-const-keyword"><strong>The const Keyword</strong></h2>
+<p>You can use <strong>const</strong> prefix to declare constants with a specific type as follows −</p>
+<pre><code class="language-cpp"><span class="hljs-type">const</span> type variable = value;
+</code></pre>
+<p>The following example explains it in detail −</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">const</span> <span class="hljs-type">int</span>  LENGTH = <span class="hljs-number">10</span>;
+   <span class="hljs-type">const</span> <span class="hljs-type">int</span>  WIDTH  = <span class="hljs-number">5</span>;
+   <span class="hljs-type">const</span> <span class="hljs-type">char</span> NEWLINE = <span class="hljs-string">&#x27;\n&#x27;</span>;
+   <span class="hljs-type">int</span> area;
+
+   area = LENGTH * WIDTH;
+   cout &lt;&lt; area;
+   cout &lt;&lt; NEWLINE;
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When the above code is compiled and executed, it produces the following result −</p>
+<pre><code>50
+</code></pre>
+<p>Note that it is a good programming practice to define constants in CAPITALS.</p>
+<h1 id="modifier-types">*<strong>*Modifier Types**</strong></h1>
+<p>C++ allows the <strong>char, int,</strong> and <strong>double</strong> data types to have modifiers preceding them. A modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations.</p>
+<p>The data type modifiers are listed here −</p>
+<ul>
+<li>signed</li>
+<li>unsigned</li>
+<li>long</li>
+<li>short</li>
+</ul>
+<p>The modifiers <strong>signed, unsigned, long,</strong> and <strong>short</strong> can be applied to integer base types. In addition, <strong>signed</strong> and <strong>unsigned</strong> can be applied to char, and <strong>long</strong> can be applied to double.</p>
+<pre><code class="language-cpp"><span class="hljs-type">unsigned</span> x;
+<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> y;
+</code></pre>
+<p>To understand the difference between the way signed and unsigned integer modifiers are interpreted by C++, you should run the following short program</p>
+<pre><code class="language-cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">/* This program shows the difference between
+   * signed and unsigned integers.
+*/</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-type">short</span> <span class="hljs-type">int</span> i;           <span class="hljs-comment">// a signed short integer</span>
+   <span class="hljs-type">short</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> j;  <span class="hljs-comment">// an unsigned short integer</span>
+
+   j = <span class="hljs-number">50000</span>;
+
+   i = j;
+   cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; j;
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>When this program is run, the following is the output −</p>
+<pre><code>-15536 50000
+</code></pre>
+<p>The above result is because the bit pattern that represents 50,000 as a short unsigned integer is interpreted as -15,536 by a short.</p>
+
+        
+        
+    </body>
+    </html>
